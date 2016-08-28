@@ -3,5 +3,5 @@ package model.drinks;
 /**
  * Created by Pesho on 8/28/2016.
  */
-public class Coctail {
+public abstract class Coctail extends Drink {
 }
