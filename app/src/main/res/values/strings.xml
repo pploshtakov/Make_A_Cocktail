@@ -8,4 +8,34 @@
     <string name="register">REGISTER</string>
     <string name="login">LOGIN</string>
     <string name="facebook_login">FACEBOOK LOGIN</string>
+    <string name="shop">Shop</string>
+    <string name="shoping_list">Shoping List</string>
+    <string name="bar_shelf">Bar Shelf</string>
+    <string-array name="drinks">
+        <item>Vodka</item>
+        <item>Whiskey</item>
+        <item>Tequila</item>
+        <item>White Rum</item>
+        <item>Dark Rum</item>
+        <item>Amaretto</item>
+    </string-array>
+    <string-array name="menu">
+        <item></item>
+        <item>Coctails</item>
+        <item>Ingridients</item>
+        <item>Random</item>
+        <item>Profile</item>
+        <item>New</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Categories</item>
+        <item>Alcoholic coctails</item>
+        <item>Non-Alcoholic cotails</item>
+        <item>Shots</item>
+    </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+
+
 </resources>

@@ -23,5 +23,13 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(reg);
             }
         });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent test = new Intent(LoginActivity.this, ShopActivity.class);
+                startActivity(test);
+            }
+        });
     }
 }
