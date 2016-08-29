@@ -7,38 +7,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/main_pic"
+    android:background="@drawable/main_pic1"
     tools:context="com.example.pesho.make_a_coctail.LoginActivity">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical"
-       android:id="@+id/namePassLayout"
-       android:layout_centerVertical="true"
-       >
-       <EditText
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:textColor="@color/colorWhite"
-           android:textSize="26dp"
-           android:text="Name"
-           android:textAlignment="textEnd"
-           android:id="@+id/loginNameText"
-           />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/namePassLayout"
+        android:layout_centerVertical="true"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="26dp"
+            android:text="Name"
+            android:textAlignment="textEnd"
+            android:id="@+id/loginNameText"
+            />
 
-       <EditText
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:textColor="@color/colorWhite"
-           android:textSize="26dp"
-           android:text="Enter password"
-           android:textAlignment="textEnd"
-           android:id="@+id/loginPassText"
-           android:layout_below="@+id/loginNameText"
-           android:layout_alignParentLeft="true"
-           android:layout_alignParentStart="true" />
-   </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="26dp"
+            android:text="Enter password"
+            android:textAlignment="textEnd"
+            android:id="@+id/loginPassText"
+            android:layout_below="@+id/loginNameText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
