@@ -1,8 +1,8 @@
-package model.storage;
+package com.example.pesho.make_a_coctail.model.storage;
 
 import java.util.TreeSet;
 
-import model.products.Product;
+import com.example.pesho.make_a_coctail.model.products.Product;
 
 /**
  * Created by Pesho on 8/28/2016.

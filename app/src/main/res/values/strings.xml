@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Make_A_Coctail</string>
     <string name="name">Name</string>
-    <string name="user_name">user name</string>
+    <string name="user_name">username</string>
     <string name="password">password</string>
     <string name="repeat_password">repeat password</string>
     <string name="enter_email">Enter email</string>

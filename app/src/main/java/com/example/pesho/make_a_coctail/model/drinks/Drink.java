@@ -1,10 +1,10 @@
-package model.drinks;
+package com.example.pesho.make_a_coctail.model.drinks;
 
 import java.util.TreeSet;
 
-import model.exceptions.NoNameException;
-import model.exceptions.NoRecipeException;
-import model.products.Product;
+import com.example.pesho.make_a_coctail.model.exceptions.NoNameException;
+import com.example.pesho.make_a_coctail.model.exceptions.NoRecipeException;
+import com.example.pesho.make_a_coctail.model.products.Product;
 
 /**
  * Created by Pesho on 8/28/2016.

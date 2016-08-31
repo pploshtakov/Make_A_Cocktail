@@ -21,8 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="26dp"
-            android:text="@string/user_name"
-            android:textAlignment="textEnd"
+            android:hint="@string/user_name"
+            android:gravity="center"
             android:id="@+id/loginNameText"
             />
 
@@ -30,8 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="26dp"
-            android:text="@string/password"
-            android:textAlignment="textEnd"
+            android:hint="@string/password"
+            android:gravity="center"
             android:id="@+id/loginPassText"
             android:layout_below="@+id/loginNameText"
             android:layout_alignParentLeft="true"

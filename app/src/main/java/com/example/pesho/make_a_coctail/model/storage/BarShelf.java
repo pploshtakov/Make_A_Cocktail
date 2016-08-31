@@ -1,6 +1,4 @@
-package model.storage;
-
-import model.products.Product;
+package com.example.pesho.make_a_coctail.model.storage;
 
 /**
  * Created by Pesho on 8/28/2016.
