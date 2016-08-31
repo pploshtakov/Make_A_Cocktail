@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/name"
+            android:hint="@string/name"
             android:id="@+id/RPNameText"
-            android:textAlignment="textEnd"
+            android:gravity="end"
             />
 
         <EditText
@@ -29,35 +29,35 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/RPUserText"
-            android:text="@string/user_name"
-            android:textAlignment="textEnd"
+            android:hint="@string/user_name"
+            android:gravity="end"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/password"
+            android:hint="@string/password"
             android:id="@+id/RPPasswordText"
-            android:textAlignment="textEnd"
+            android:gravity="end"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/repeat_password"
+            android:hint="@string/repeat_password"
             android:id="@+id/RPRepeatPassword"
-            android:textAlignment="textEnd"
+            android:gravity="end"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/enter_email"
+            android:hint="@string/enter_email"
             android:id="@+id/RPEmail"
-            android:textAlignment="textEnd"
+            android:gravity="end"
             />
 
         <Button

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Make_A_Coctail</string>
     <string name="name">Name</string>
-    <string name="user_name">user name</string>
+    <string name="user_name">username</string>
     <string name="password">password</string>
     <string name="repeat_password">repeat password</string>
     <string name="enter_email">Enter email</string>
@@ -36,6 +36,15 @@
     </string-array>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_test_shop">TestShopActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
