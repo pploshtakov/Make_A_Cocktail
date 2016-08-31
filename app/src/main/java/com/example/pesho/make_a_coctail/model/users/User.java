@@ -34,6 +34,7 @@ public class User {
         myShopList = new ShopList();
         this.favorite = new TreeSet<Drink>();
         this.myDrinks = new TreeSet<Drink>();
+        users.put(userName, this);
     }
 
     public void setUserName(String userName) throws NoNameException {
