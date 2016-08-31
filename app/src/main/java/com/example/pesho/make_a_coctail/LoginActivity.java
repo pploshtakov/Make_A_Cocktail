@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login = new Intent(LoginActivity.this, ShopActivity.class);
+                Intent login = new Intent(LoginActivity.this, TestShopActivity.class);
                 if (User.checkPass(userName.getText().toString(), pass.getText().toString())) {
                     startActivity(login);
                     finish();

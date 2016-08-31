@@ -17,5 +17,10 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ShopActivity" />
+        <activity
+            android:name=".TestShopActivity"
+            android:label="@string/title_activity_test_shop"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
+
 </manifest>
