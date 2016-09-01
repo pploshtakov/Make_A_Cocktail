@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.pesho.make_a_cocktail.model.users.User;
+import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_FOR_REGISTER = 1;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        UsersManager.getInstance(LoginActivity.this);
         register = (Button) findViewById(R.id.LPRegisterButton);
         login = (Button) findViewById(R.id.LPLoginButton);
         regByFace = (Button) findViewById(R.id.LPFacebookLoginButton);
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent login = new Intent(LoginActivity.this, TestShopActivity.class);
-                if (User.checkPass(userName.getText().toString(), pass.getText().toString())) {
+                if (UsersManager.checkPass(userName.getText().toString(), pass.getText().toString())) {
                     startActivity(login);
                     finish();
                 } else {

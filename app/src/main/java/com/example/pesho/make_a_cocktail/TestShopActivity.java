@@ -97,7 +97,7 @@ public class TestShopActivity extends AppCompatActivity
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_ingredients) {
             //set fragment
-            IngridientsFragment fragment = new IngridientsFragment();
+            IngredientsFragment fragment = new IngredientsFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
