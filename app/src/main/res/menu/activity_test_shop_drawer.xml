@@ -3,9 +3,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_cocktails"
+            android:id="@+id/nav_drinks"
             android:icon="@drawable/coctail_nav_pic"
-            android:title="Cocktails" />
+            android:title="Drinks" />
         <item
             android:id="@+id/nav_ingredients"
             android:icon="@drawable/nav_ingredients_pic"

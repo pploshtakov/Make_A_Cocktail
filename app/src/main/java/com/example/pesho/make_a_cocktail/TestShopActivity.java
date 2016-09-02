@@ -21,6 +21,7 @@ public class TestShopActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView navigationView;
     Toolbar toolbar;
+    Toolbar toolbar1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,8 @@ public class TestShopActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar1);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -105,14 +108,15 @@ public class TestShopActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_cocktails) {
-            // Handle the camera action
+        if (id == R.id.nav_drinks) {
             //set fragment
             CocktailsFragment fragment = new CocktailsFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
+            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+            setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_ingredients) {
             //set fragment
@@ -121,6 +125,8 @@ public class TestShopActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
+            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+            setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_random_drink) {
             //set fragment
@@ -129,6 +135,8 @@ public class TestShopActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
+            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+            setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_profile) {
             //set fragment
@@ -137,6 +145,8 @@ public class TestShopActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
+            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+            setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_new_drink) {
             //set fragment
@@ -145,6 +155,8 @@ public class TestShopActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
+            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+            setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         }
 
