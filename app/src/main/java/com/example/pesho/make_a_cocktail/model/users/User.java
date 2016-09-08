@@ -1,5 +1,10 @@
 package com.example.pesho.make_a_cocktail.model.users;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -7,6 +12,10 @@ import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.exceptions.NoNameException;
 import com.example.pesho.make_a_cocktail.model.storage.BarShelf;
 import com.example.pesho.make_a_cocktail.model.storage.ShopList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Pesho on 8/28/2016.
@@ -33,7 +42,6 @@ public class User {
         myShopList = new ShopList();
         this.favorite = new TreeSet<Drink>();
         this.myDrinks = new TreeSet<Drink>();
-        users.put(userName, this);
     }
 
     public void setUserName(String userName) throws NoNameException {
@@ -49,20 +57,20 @@ public class User {
         this.pass = pass;
     }
 
-    //test methods for register users
-    public static void registerUser(User user) {
-        users.put(user.userName, user);
+    public String getName() {
+        return name;
     }
 
-    public static boolean chechUsernameIsFree (String name) {
-        return !users.containsKey(name);
+    public String getUserName() {
+        return userName;
     }
 
-    public static boolean checkPass(String name, String pass) {
-        if (users.containsKey(name)) {
-            User user = users.get(name);
-            return pass.equals(user.pass);
-        }
-        return false;
+    public String getPass() {
+        return pass;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
 }

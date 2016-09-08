@@ -10,8 +10,9 @@
     <string name="login">LOGIN</string>
     <string name="facebook_login">FACEBOOK LOGIN</string>
     <string name="shop">Shop</string>
-    <string name="shoping_list">Shoping List</string>
+    <string name="shopping_list">Shoping List</string>
     <string name="bar_shelf">Bar Shelf</string>
+    <string name="search">Search</string>
     <string-array name="drinks">
         <item>Vodka</item>
         <item>Whiskey</item>

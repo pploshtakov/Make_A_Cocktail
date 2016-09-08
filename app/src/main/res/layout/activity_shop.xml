@@ -61,7 +61,7 @@
             android:layout_weight="1"
             android:textSize="12dp"
             android:layout_height="wrap_content"
-            android:text="@string/shoping_list"
+            android:text="@string/shopping_list"
             android:id="@+id/SPShopingListButton" />
 
         <Button
