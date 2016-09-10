@@ -32,41 +32,7 @@ public class DrinksManager {
     }
 
     private DrinksManager(Activity activity) {
-        String json = loadJSON();
-        Log.e("Load json", json);
-//        try {
-//            JSONArray jsonArray = new JSONArray(json);
-//            for(int i = 0; i < jsonArray.length(); i++) {
-//                JSONObject o = jsonArray.getJSONObject(i);
-//                Drink drink = new Drink(o.getString("name"), o.getString("userName"), o.getString("password"), o.getString("email"));
-//                drinks.put(user.getUserName(), user);
-//            }
-//        } catch (JSONException e) {
-//            Log.e("JSON", e.getMessage());
-//        }
+
     }
 
-    private String loadJSON() {
-        String json = null;
-        try {
-            File file = new File("drinksJSON");
-            FileInputStream is = new FileInputStream(file);
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
 }
