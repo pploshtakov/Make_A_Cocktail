@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 import com.example.pesho.make_a_cocktail.model.users.User;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         UsersManager.getInstance(LoginActivity.this);
+        DrinksManager.getInstance(LoginActivity.this);
         register = (Button) findViewById(R.id.LPRegisterButton);
         login = (Button) findViewById(R.id.LPLoginButton);
         regByFace = (Button) findViewById(R.id.LPFacebookLoginButton);
