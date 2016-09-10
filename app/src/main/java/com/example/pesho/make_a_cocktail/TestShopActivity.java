@@ -2,6 +2,7 @@ package com.example.pesho.make_a_cocktail;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class TestShopActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener {
     NavigationView navigationView;
     Toolbar toolbar;
     Toolbar toolbar1;
@@ -163,5 +164,10 @@ public class TestShopActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

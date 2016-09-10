@@ -11,7 +11,13 @@ import com.example.pesho.make_a_cocktail.model.products.Product;
  */
 public abstract class Drink {
     private String name;
-    private String recipe;
+    private String strInstructions;
+
+
+    private int idDrink;
+    private String strGlass;
+    private String strDrinkThumb;
+
     private TreeSet<Product> products;
 
     public Drink(String name) throws NoNameException {
@@ -27,9 +33,9 @@ public abstract class Drink {
         }
     }
 
-    public void setRecipe(String recipe) throws NoRecipeException {
+    public void setStrInstructions(String strInstructions) throws NoRecipeException {
         if (name != null && !name.isEmpty()) {
-            this.recipe = recipe;
+            this.strInstructions = strInstructions;
         } else {
             throw new NoRecipeException();
         }
