@@ -17,47 +17,55 @@
 
         <EditText
             android:layout_width="match_parent"
+            android:lines="1"
+            android:inputType="textPersonName"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/name"
             android:id="@+id/RPNameText"
-            android:gravity="end"
+            android:gravity="end|bottom"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:lines="1"
+            android:inputType="textPersonName"
             android:id="@+id/RPUserText"
             android:hint="@string/user_name"
-            android:gravity="end"
+            android:gravity="end|bottom"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:lines="1"
             android:hint="@string/password"
             android:id="@+id/RPPasswordText"
-            android:gravity="end"
+            android:gravity="end|bottom"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:lines="1"
             android:layout_weight="1"
             android:hint="@string/repeat_password"
             android:id="@+id/RPRepeatPassword"
-            android:gravity="end"
+            android:gravity="end|bottom"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:lines="1"
+            android:inputType="textPersonName"
             android:hint="@string/enter_email"
             android:id="@+id/RPEmail"
-            android:gravity="end"
+            android:gravity="end|bottom"
             />
 
         <Button
