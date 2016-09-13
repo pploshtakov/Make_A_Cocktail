@@ -1,6 +1,7 @@
 package com.example.pesho.make_a_cocktail;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +32,7 @@ public class CocktailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cocktails, container, false);
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.cocktail_recycler_view);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        MyDrinkAdapter adapter = new MyDrinkAdapter(DrinksManager.getList());
+        MyDrinkAdapter adapter = new MyDrinkAdapter(DrinksManager.getList(), rv);
         rv.setAdapter(adapter);
         return view;
         //return inflater.inflate(R.layout.fragment_cocktails, container, false);

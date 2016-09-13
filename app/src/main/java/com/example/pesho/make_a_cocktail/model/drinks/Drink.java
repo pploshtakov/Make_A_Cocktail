@@ -42,7 +42,9 @@ public class Drink {
 
     }
 
-
+    public String getStrInstructions() {
+        return strInstructions;
+    }
 
     public void setName(String name) throws NoNameException {
         if (name != null && !name.isEmpty()) {
