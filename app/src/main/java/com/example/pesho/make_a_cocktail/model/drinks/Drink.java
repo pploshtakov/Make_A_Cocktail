@@ -83,4 +83,8 @@ public class Drink {
     public int getIdDrink() {
         return idDrink;
     }
+
+    public void setFavorite(boolean b) {
+        this.isFavorite = b;
+    }
 }

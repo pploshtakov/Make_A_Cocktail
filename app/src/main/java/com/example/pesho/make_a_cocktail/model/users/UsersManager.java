@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinkJSON;
 
 import org.json.JSONArray;
@@ -90,6 +91,14 @@ public class UsersManager {
         String value = DrinkJSON.drinks;
         editor.putString(key, value);
         editor.commit();
+    }
+
+    public static void addFavoriteDrink(String loggedUser, Drink drink) {
+        users.get(loggedUser).addToFavorite(drink);
+    }
+
+    public static void removeFavoriteDrink(String loggedUser, Drink drink) {
+        users.get(loggedUser).removeFromFavorite(drink);
     }
 }
 

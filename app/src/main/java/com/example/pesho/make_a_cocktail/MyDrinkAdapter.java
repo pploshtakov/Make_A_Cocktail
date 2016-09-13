@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
+import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 import java.util.ArrayList;
 
@@ -21,9 +22,11 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
     private ArrayList<Drink> drinks;
     private final View.OnClickListener mOnClickListener = new MyOnClickListener();
     private RecyclerView mRecyclerView;
+    private String loggedUser;
 
-    public MyDrinkAdapter(ArrayList<Drink> drinks, RecyclerView mRecyclerView) {
+    public MyDrinkAdapter(ArrayList<Drink> drinks, RecyclerView mRecyclerView, String loggedUser) {
         this.mRecyclerView = mRecyclerView;
+        this.loggedUser = loggedUser;
         if (drinks != null) {
             this.drinks = drinks;
         } else {
@@ -39,7 +42,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Drink drink = drinks.get(position);
         holder.drinkImageView.setImageResource(drink.getImage());
         holder.drinkTitleTextView.setText(drink.getName());
@@ -48,6 +51,24 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
         } else {
             holder.drinkFavoriteImageButton.setImageResource(R.drawable.heart_pic);
         }
+        holder.drinkFavoriteImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drink drink = drinks.get(position);
+                if (!drink.isFavorite()) {
+                    holder.drinkFavoriteImageButton.setImageResource(R.drawable.favorite_pic);
+                    drink.setFavorite(true);
+                    UsersManager.addFavoriteDrink(loggedUser,drink);
+                } else {
+                    holder.drinkFavoriteImageButton.setImageResource(R.drawable.heart_pic);
+                    drink.setFavorite(false);
+                    UsersManager.removeFavoriteDrink(loggedUser,drink);
+                }
+
+
+            }
+        });
+
     }
 
     @Override
@@ -65,7 +86,6 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
             drinkImageView = (ImageView) itemView.findViewById(R.id.drink_info_pic);
             drinkTitleTextView = (TextView) itemView.findViewById(R.id.drink_info_title);
             drinkFavoriteImageButton = (ImageButton) itemView.findViewById(R.id.drink_info_favorite_button);
-
         }
     }
 

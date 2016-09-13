@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.Comparator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -40,7 +41,12 @@ public class User {
         this.pass = pass;
         myShelf = new BarShelf();
         myShopList = new ShopList();
-        this.favorite = new TreeSet<Drink>();
+        this.favorite = new TreeSet<Drink>(new Comparator<Drink>() {
+            @Override
+            public int compare(Drink lhs, Drink rhs) {
+                return lhs.getName().compareTo(rhs.getName());
+            }
+        });
         this.myDrinks = new TreeSet<Drink>();
     }
 
@@ -73,4 +79,11 @@ public class User {
         return email;
     }
 
+    public void addToFavorite(Drink drink) {
+        favorite.add(drink);
+    }
+
+    public void removeFromFavorite(Drink drink) {
+        favorite.remove(drink);
+    }
 }
