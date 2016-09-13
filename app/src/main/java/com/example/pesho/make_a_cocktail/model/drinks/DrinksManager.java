@@ -2,11 +2,14 @@ package com.example.pesho.make_a_cocktail.model.drinks;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.JsonReader;
 import android.util.Log;
 
 import com.example.pesho.make_a_cocktail.R;
 import com.example.pesho.make_a_cocktail.model.users.User;
+import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +21,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -29,14 +34,14 @@ public class DrinksManager {
     private static TreeMap<Integer, Drink> drinks = new TreeMap<>();
 
 
-    public static DrinksManager getInstance(Activity activity) {
+    public static DrinksManager getInstance(Activity activity, String loggedUserName) {
         if (ourInstance == null) {
-            return new DrinksManager(activity);
+            return new DrinksManager(activity,loggedUserName);
         }
         return ourInstance;
     }
 
-    private DrinksManager(Activity activity) {
+    private DrinksManager(Activity activity, String loggedUserName) {
 //        try {
 //            JsonReader json = new JsonReader(new InputStreamReader(new FileInputStream("drinkJSON")));
 //        } catch (FileNotFoundException e) {
@@ -44,20 +49,22 @@ public class DrinksManager {
 //            e.printStackTrace();
 //            return;
 //        }
+        String key = "drinksForUser" + loggedUserName;
+        String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("drinksForUser" + loggedUserName, "Doesn't have drinks!");
+        if (json.equals("Doesn't have drinks!")) {
+            UsersManager.addUsersDrinks(loggedUserName);
+        }
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            for(int i = 0; i < jsonArray.length(); i++) {
+                JSONObject o = jsonArray.getJSONObject(i);
+                Drink drink = new Drink(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic);
+                DrinksManager.addDrink(drink);
+            }
+        } catch (JSONException e) {
+            Log.e("JSON", e.getMessage());
+        }
 
-        Drink drink1 = new Drink(13060, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink2 = new Drink(13061, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink3 = new Drink(13062, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink4 = new Drink(13063, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink5 = new Drink(13064, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink6 = new Drink(13065, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink7 = new Drink(13066, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink8 = new Drink(13067, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink9 = new Drink(13068, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink10 = new Drink(13069, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink11 = new Drink(130610, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink12 = new Drink(130611, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
-        Drink drink13 = new Drink(130612, "Margarita", "Rub rim of cocktail glass with lime juice, dip rim in salt. Shake all ingredients with ice, strain into the salt-rimmed glass, and serve.", R.drawable.margarita_pic);
 
     }
     public static ArrayList<Drink> getList() {
@@ -69,4 +76,24 @@ public class DrinksManager {
     public static void addDrink(Drink drink) {
         drinks.put(drink.getIdDrink(), drink);
     }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            Log.e("src",src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap","returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception",e.getMessage());
+            return null;
+        }
+    }
+
+
 }

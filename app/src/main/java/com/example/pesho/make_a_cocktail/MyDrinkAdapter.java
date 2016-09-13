@@ -60,4 +60,6 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
             drinkFavoriteImageButton = (ImageButton) itemView.findViewById(R.id.drink_info_favorite_button);
         }
     }
+
+
 }

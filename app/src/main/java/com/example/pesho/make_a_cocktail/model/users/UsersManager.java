@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.pesho.make_a_cocktail.model.drinks.DrinkJSON;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,6 +18,7 @@ import java.util.HashMap;
  */
 public class UsersManager {
     private static UsersManager ourInstance;
+    private static Activity activity;
     private static HashMap<String, User> users = new HashMap<>();
 
     public static UsersManager getInstance(Activity activity) {
@@ -26,6 +29,7 @@ public class UsersManager {
     }
 
     private UsersManager(Activity activity) {
+        this.activity = activity;
         String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("registeredUsers", "No registered users!");
         try {
             JSONArray jsonArray = new JSONArray(json);
@@ -61,6 +65,9 @@ public class UsersManager {
             }
         editor.putString(key, value);
         editor.commit();
+
+        //make SharedPrefs with all drinks for this user
+        addUsersDrinks(user.getUserName());
     }
 
     public static boolean checkUsernameIsFree (String name) {
@@ -73,6 +80,16 @@ public class UsersManager {
             return pass.equals(user.getPass());
         }
         return false;
+    }
+
+    public static void addUsersDrinks(String userName) {
+        User u = users.get(userName);
+        SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String key = "drinksForUser" + userName;
+        String value = DrinkJSON.drinks;
+        editor.putString(key, value);
+        editor.commit();
     }
 }
 

@@ -2,11 +2,13 @@ package com.example.pesho.make_a_cocktail;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,6 +20,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
+import com.example.pesho.make_a_cocktail.model.users.UsersManager;
+
 public class TestShopActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener {
     NavigationView navigationView;
@@ -27,6 +32,9 @@ public class TestShopActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_shop);
+        UsersManager.getInstance(this);
+        Intent intent = getIntent();
+        DrinksManager.getInstance(this, intent.getStringExtra("loggedUser"));
         //set fragment
         CocktailsFragment fragment = new CocktailsFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

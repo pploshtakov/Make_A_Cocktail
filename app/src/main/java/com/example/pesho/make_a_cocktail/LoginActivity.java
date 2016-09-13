@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         UsersManager.getInstance(LoginActivity.this);
-        DrinksManager.getInstance(LoginActivity.this);
         register = (Button) findViewById(R.id.LPRegisterButton);
         login = (Button) findViewById(R.id.LPLoginButton);
         regByFace = (Button) findViewById(R.id.LPFacebookLoginButton);
@@ -52,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent login = new Intent(LoginActivity.this, TestShopActivity.class);
                 if (UsersManager.checkPass(userName.getText().toString(), pass.getText().toString())) {
+                    login.putExtra("loggedUser", userName.getText().toString());
                     startActivity(login);
                     finish();
                 } else {
