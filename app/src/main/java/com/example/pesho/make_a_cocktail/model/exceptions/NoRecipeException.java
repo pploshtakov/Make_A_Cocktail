@@ -6,6 +6,6 @@ package com.example.pesho.make_a_cocktail.model.exceptions;
 public class NoRecipeException extends Exception {
     @Override
     public String getMessage() {
-        return "Do not typed recipe!";
+        return "Input a recipe!";
     }
 }

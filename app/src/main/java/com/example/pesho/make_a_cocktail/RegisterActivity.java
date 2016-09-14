@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
         UsersManager.getInstance(RegisterActivity.this);
         register = (Button) findViewById(R.id.RPRegisterButton);
         name = (EditText) findViewById(R.id.RPNameText);
