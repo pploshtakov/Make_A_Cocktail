@@ -6,6 +6,6 @@ package com.example.pesho.make_a_cocktail.model.exceptions;
 public class NoNameException extends Exception {
     @Override
     public String getMessage() {
-        return "Do not typed a name!";
+        return "Input a name!";
     }
 }

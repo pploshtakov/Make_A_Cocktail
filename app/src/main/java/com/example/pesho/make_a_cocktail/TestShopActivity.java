@@ -33,10 +33,12 @@ public class TestShopActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_shop);
+
         UsersManager.getInstance(this);
         Intent intent = getIntent();
         this.loggedUser = intent.getStringExtra("loggedUser");
         DrinksManager.getInstance(this, loggedUser);
+
         //set fragment
         CocktailsFragment fragment = new CocktailsFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

@@ -7,4 +7,5 @@
     <color name="yellowBackground">#FAD54A</color>
     <color name="darkBlue">#FF49BFF5</color>
     <color name="lightBlue">#FFB0E6FF</color>
+    <color name="black">#000000</color>
 </resources>
