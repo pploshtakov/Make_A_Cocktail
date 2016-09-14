@@ -1,5 +1,6 @@
 package com.example.pesho.make_a_cocktail;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ public class AddNewDrinkActivity extends AppCompatActivity {
     CheckBox alcoholicCheckBox;
     Button addImageButton;
     Button addDrinkButton;
+    String loggedUser;
 
 
     @Override
@@ -37,6 +39,8 @@ public class AddNewDrinkActivity extends AppCompatActivity {
         alcoholicCheckBox = (CheckBox) findViewById(R.id.add_new_drink_CB);
         addImageButton = (Button) findViewById(R.id.add_new_drink_up_photo_button);
         addDrinkButton = (Button) findViewById(R.id.add_new_drink_add_drink_button);
+        Intent intent = getIntent();
+        loggedUser = intent.getStringExtra("loggedUser");
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -80,20 +84,23 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                 }
                 if (category.equals("Alcoholic cocktail")) {
                     int id = DrinksManager.generateDrinkId();
-                    drink = new AlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, alcoholic, glass, null, false  );
+                    drink = new AlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, alcoholic, glass, "", false  );
                     setResult(RESULT_OK);
+                    DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
                     finish();
                     return;
                 } else if (category.equals("NonAlcoholic cocktail")) {
                     int id = DrinksManager.generateDrinkId();
-                    drink = new NonAlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, alcoholic, glass, null, false  );
+                    drink = new NonAlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, alcoholic, glass, "", false  );
                     setResult(RESULT_OK);
+                    DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
                     finish();
                     return;
                 } else if (category.equals("Shot")) {
                     int id = DrinksManager.generateDrinkId();
-                    drink = new Shot(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, alcoholic, glass, null, false  );
+                    drink = new Shot(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, alcoholic, glass, "", false  );
                     setResult(RESULT_OK);
+                    DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
                     finish();
                     return;
                 }
