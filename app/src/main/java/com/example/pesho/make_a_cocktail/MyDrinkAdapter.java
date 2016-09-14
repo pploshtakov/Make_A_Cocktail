@@ -65,7 +65,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
                     drink.setFavorite(false);
                     UsersManager.removeFavoriteDrink(loggedUser,drink);
                 }
-                DrinksManager.setFavorite(loggedUser);
+                DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
             }
         });
 

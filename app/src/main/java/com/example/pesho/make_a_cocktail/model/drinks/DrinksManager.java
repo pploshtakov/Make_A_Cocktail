@@ -66,6 +66,7 @@ public class DrinksManager {
             UsersManager.addUsersDrinks(loggedUserName);
         }
         json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("drinksForUser" + loggedUserName, "Doesn't have drinks!");
+        addedDrinks = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getInt("addedDrinksID", 0);
         try {
             JSONArray jsonArray = new JSONArray(json);
             for(int i = 0; i < jsonArray.length(); i++) {
@@ -110,12 +111,12 @@ public class DrinksManager {
         return true;
     }
 
-    public static void setFavorite(String loggedUser) {
+    public static void overwriteSharedPrefsDrinks(String loggedUser) {
         SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         String key = "drinksForUser" + loggedUser;
         String value = "";
-        JSONArray jsonUsers = new JSONArray();
+        JSONArray jsonDrinks = new JSONArray();
         try {
             for (Drink d : drinks.values()) {
                 JSONObject o = new JSONObject();
@@ -128,16 +129,19 @@ public class DrinksManager {
                 o.put("strDrinkThumb", d.getStrDrinkThumb());
                 o.put("isFavorite", d.isFavorite());
 
-                jsonUsers.put(o);
+                jsonDrinks.put(o);
             }
-            value = jsonUsers.toString();
+            value = jsonDrinks.toString();
         } catch (JSONException e) {
             Log.e("JSON", e.getMessage());
         }
         editor.putString(key, value);
+        editor.putInt("addedDrinksID", addedDrinks);
         editor.commit();
 
     }
+
+
 
 
 }
