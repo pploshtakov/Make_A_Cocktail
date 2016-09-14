@@ -62,15 +62,15 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                 String category = categorySpinner.getSelectedItem().toString();
                 String glass = glassSpinner.getSelectedItem().toString();
                 if (category.equals("Categories")){
-                    Toast.makeText(AddNewDrinkActivity.this, "Please choice category!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewDrinkActivity.this, "Please choose category!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (category.equals("Shot") && !glass.equals("Shot glass")) {
-                    Toast.makeText(AddNewDrinkActivity.this, "Any shot must be in shot glass!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewDrinkActivity.this, "Any shot must be in a shot glass!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!category.equals("Shot") && glass.equals("Shot glass")) {
-                    Toast.makeText(AddNewDrinkActivity.this, "Cocktail can't be in shot glass!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewDrinkActivity.this, "Cocktail can't be in a shot glass!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Drink drink;

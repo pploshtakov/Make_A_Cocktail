@@ -29,6 +29,7 @@ public class TestShopActivity extends AppCompatActivity
     Toolbar toolbar;
     Toolbar toolbar1;
     private static final int ADD_NEW_DRINK = 1;
+    private static final int EDIT_PROFILE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,15 +154,9 @@ public class TestShopActivity extends AppCompatActivity
 //            setSupportActionBar(toolbar1);
 //            setSupportActionBar(toolbar);
         } else if (id == R.id.nav_profile) {
-            //set fragment
-            ProfileFragment fragment = new ProfileFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
-//            toolbar = (Toolbar) findViewById(R.id.toolbar);
-//            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
-//            setSupportActionBar(toolbar1);
-//            setSupportActionBar(toolbar);
+           Intent intent = new Intent(TestShopActivity.this, ProfileActivity.class);
+            intent.putExtra("username",loggedUser);
+            startActivityForResult(intent, EDIT_PROFILE);
         } else if (id == R.id.nav_new_drink) {
             //set fragment
 //            NewDrinksFragment fragment = new NewDrinksFragment();

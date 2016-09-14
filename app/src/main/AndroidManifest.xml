@@ -24,7 +24,8 @@
         <activity android:name="com.example.pesho.make_a_coctail.SmartTabTestActivity" />
         <activity android:name=".SmartaTabTestActivity" />
         <activity android:name=".DrinkInfoActivity" />
-        <activity android:name=".AddNewDrinkActivity"></activity>
+        <activity android:name=".AddNewDrinkActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
