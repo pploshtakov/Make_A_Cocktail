@@ -32,6 +32,7 @@ import java.util.TreeMap;
 public class DrinksManager {
     private static DrinksManager ourInstance;
     private static TreeMap<Integer, Drink> drinks = new TreeMap<>();
+    public enum DrinksCategories {Alcoholic, NonAlcoholic, Shot};
 
 
     public static DrinksManager getInstance(Activity activity, String loggedUserName) {
@@ -51,14 +52,22 @@ public class DrinksManager {
 //        }
         String key = "drinksForUser" + loggedUserName;
         String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("drinksForUser" + loggedUserName, "Doesn't have drinks!");
-        if (json.equals("Doesn't have drinks!")) {
+        //if (json.equals("Doesn't have drinks!")) {
             UsersManager.addUsersDrinks(loggedUserName);
-        }
+       // }
+        json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("drinksForUser" + loggedUserName, "Doesn't have drinks!");
         try {
             JSONArray jsonArray = new JSONArray(json);
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject o = jsonArray.getJSONObject(i);
-                Drink drink = new Drink(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic);
+                Drink drink;
+                if (o.getString("strCategory").equals(DrinksCategories.Shot)) {
+                    drink = new Shot(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"));
+                } else if (o.getString("strAlcoholic").equals(DrinksCategories.Alcoholic)) {
+                    drink = new AlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"));
+                } else {
+                    drink = new NonAlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"));
+                }
                 DrinksManager.addDrink(drink);
             }
         } catch (JSONException e) {

@@ -1,6 +1,8 @@
 package com.example.pesho.make_a_cocktail;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
  * A simple {@link Fragment} subclass.
  */
 public class CocktailsFragment extends Fragment {
+    Activity activity;
 
 
     public CocktailsFragment() {
@@ -32,7 +35,7 @@ public class CocktailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cocktails, container, false);
         Intent intent = getActivity().getIntent();
-        String loggedUser = intent.getStringExtra("loggedUser");
+        String loggedUser = ((Communicator)activity).getLoggedUserName();
         Log.e("LoggedInFragment", loggedUser);
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.cocktail_recycler_view);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -42,4 +45,13 @@ public class CocktailsFragment extends Fragment {
         //return inflater.inflate(R.layout.fragment_cocktails, container, false);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.activity = (Activity) context;
+    }
+
+    interface Communicator {
+        String getLoggedUserName();
+    }
 }

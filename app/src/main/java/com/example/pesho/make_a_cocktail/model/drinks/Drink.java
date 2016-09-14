@@ -12,18 +12,17 @@ import com.example.pesho.make_a_cocktail.model.products.Product;
 /**
  * Created by Pesho on 8/28/2016.
  */
-public class Drink {
-
-
-    private String name;
-    private String strInstructions;
-
-
+public abstract class Drink {
     private int idDrink;
+    private String name;
     private int image;
-    private boolean isFavorite;
+    private String strCategory;
+    private String strAlcoholic;
     private String strGlass;
     private String strDrinkThumb;
+    private String strInstructions;
+    private boolean isFavorite;
+
 
     private TreeSet<Product> products;
 
@@ -32,11 +31,15 @@ public class Drink {
         this.products = new TreeSet<Product>();
     }
 
-    public Drink(int idDrink, String name, String instructions, int image)  {
+    public Drink(int idDrink, String name, String instructions, int image, String strCategory, String strAlcoholic, String strGlass, String strDrinkThumb)  {
         this.idDrink = idDrink;
         this.strInstructions = instructions;
         this.image = image;
         this.name = name;
+        this.strCategory = strCategory;
+        this.strAlcoholic = strAlcoholic;
+        this.strGlass = strGlass;
+        this.strDrinkThumb = strDrinkThumb;
         this.products = new TreeSet<Product>();
         DrinksManager.addDrink(this);
 

@@ -24,8 +24,9 @@ import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 public class TestShopActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener, CocktailsFragment.Communicator {
     NavigationView navigationView;
+    String loggedUser;
     Toolbar toolbar;
     Toolbar toolbar1;
     @Override
@@ -34,7 +35,8 @@ public class TestShopActivity extends AppCompatActivity
         setContentView(R.layout.activity_test_shop);
         UsersManager.getInstance(this);
         Intent intent = getIntent();
-        DrinksManager.getInstance(this, intent.getStringExtra("loggedUser"));
+        this.loggedUser = intent.getStringExtra("loggedUser");
+        DrinksManager.getInstance(this, loggedUser);
         //set fragment
         CocktailsFragment fragment = new CocktailsFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -123,8 +125,8 @@ public class TestShopActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+//            toolbar = (Toolbar) findViewById(R.id.toolbar);
+//            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
             setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_ingredients) {
@@ -133,8 +135,8 @@ public class TestShopActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+//            toolbar = (Toolbar) findViewById(R.id.toolbar);
+//            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
             setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_random_drink) {
@@ -143,8 +145,8 @@ public class TestShopActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+//            toolbar = (Toolbar) findViewById(R.id.toolbar);
+//            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
             setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         } else if (id == R.id.nav_profile) {
@@ -163,8 +165,8 @@ public class TestShopActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+//            toolbar = (Toolbar) findViewById(R.id.toolbar);
+//            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
             setSupportActionBar(toolbar1);
             setSupportActionBar(toolbar);
         }
@@ -177,5 +179,10 @@ public class TestShopActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public String getLoggedUserName() {
+        return loggedUser;
     }
 }
