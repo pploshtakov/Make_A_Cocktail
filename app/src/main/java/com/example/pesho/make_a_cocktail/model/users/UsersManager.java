@@ -95,10 +95,13 @@ public class UsersManager {
 
     public static void addFavoriteDrink(String loggedUser, Drink drink) {
         users.get(loggedUser).addToFavorite(drink);
+        users.get(loggedUser).saveFavoriteList(activity);
     }
 
     public static void removeFavoriteDrink(String loggedUser, Drink drink) {
         users.get(loggedUser).removeFromFavorite(drink);
     }
+
+
 }
 

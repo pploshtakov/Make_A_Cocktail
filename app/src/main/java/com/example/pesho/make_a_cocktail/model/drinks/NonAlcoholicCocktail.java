@@ -8,7 +8,7 @@ import com.example.pesho.make_a_cocktail.model.exceptions.NoNameException;
 public class NonAlcoholicCocktail extends Cocktail {
 
 
-    public NonAlcoholicCocktail(int idDrink, String name, String instructions, int image, String strCategory, String strAlcoholic, String strGlass, String strDrinkThumb) {
-        super(idDrink, name, instructions, image, strCategory, strAlcoholic, strGlass, strDrinkThumb);
+    public NonAlcoholicCocktail(int idDrink, String name, String instructions, int image, String strCategory, String strAlcoholic, String strGlass, String strDrinkThumb, boolean isFavorite) {
+        super(idDrink, name, instructions, image, strCategory, strAlcoholic, strGlass, strDrinkThumb, isFavorite);
     }
 }

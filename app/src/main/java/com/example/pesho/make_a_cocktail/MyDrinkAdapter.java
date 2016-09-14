@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
+import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 import java.util.ArrayList;
@@ -64,8 +65,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
                     drink.setFavorite(false);
                     UsersManager.removeFavoriteDrink(loggedUser,drink);
                 }
-
-
+                DrinksManager.setFavorite(loggedUser);
             }
         });
 

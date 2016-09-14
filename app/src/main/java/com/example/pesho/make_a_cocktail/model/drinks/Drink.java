@@ -31,7 +31,7 @@ public abstract class Drink {
         this.products = new TreeSet<Product>();
     }
 
-    public Drink(int idDrink, String name, String instructions, int image, String strCategory, String strAlcoholic, String strGlass, String strDrinkThumb)  {
+    public Drink(int idDrink, String name, String instructions, int image, String strCategory, String strAlcoholic, String strGlass, String strDrinkThumb, boolean isFavorite)  {
         this.idDrink = idDrink;
         this.strInstructions = instructions;
         this.image = image;
@@ -40,6 +40,7 @@ public abstract class Drink {
         this.strAlcoholic = strAlcoholic;
         this.strGlass = strGlass;
         this.strDrinkThumb = strDrinkThumb;
+        this.isFavorite = isFavorite;
         this.products = new TreeSet<Product>();
         DrinksManager.addDrink(this);
 
@@ -77,6 +78,22 @@ public abstract class Drink {
 
     public String getName() {
         return name;
+    }
+
+    public String getStrCategory() {
+        return strCategory;
+    }
+
+    public String getStrAlcoholic() {
+        return strAlcoholic;
+    }
+
+    public String getStrGlass() {
+        return strGlass;
+    }
+
+    public String getStrDrinkThumb() {
+        return strDrinkThumb;
     }
 
     public boolean isFavorite() {

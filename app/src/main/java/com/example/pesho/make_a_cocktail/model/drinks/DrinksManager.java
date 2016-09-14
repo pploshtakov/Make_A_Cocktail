@@ -2,6 +2,7 @@ package com.example.pesho.make_a_cocktail.model.drinks;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.JsonReader;
@@ -32,11 +33,13 @@ import java.util.TreeMap;
 public class DrinksManager {
     private static DrinksManager ourInstance;
     private static TreeMap<Integer, Drink> drinks = new TreeMap<>();
+    private static Activity activity;
     public enum DrinksCategories {Alcoholic, NonAlcoholic, Shot};
 
 
-    public static DrinksManager getInstance(Activity activity, String loggedUserName) {
+    public static DrinksManager getInstance(Activity act, String loggedUserName) {
         if (ourInstance == null) {
+            activity = act;
             return new DrinksManager(activity,loggedUserName);
         }
         return ourInstance;
@@ -50,23 +53,32 @@ public class DrinksManager {
 //            e.printStackTrace();
 //            return;
 //        }
-        String key = "drinksForUser" + loggedUserName;
         String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("drinksForUser" + loggedUserName, "Doesn't have drinks!");
-        //if (json.equals("Doesn't have drinks!")) {
+        if (json.equals("Doesn't have drinks!")) {
             UsersManager.addUsersDrinks(loggedUserName);
-       // }
+        }
         json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("drinksForUser" + loggedUserName, "Doesn't have drinks!");
         try {
             JSONArray jsonArray = new JSONArray(json);
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject o = jsonArray.getJSONObject(i);
                 Drink drink;
+                boolean b = false;
                 if (o.getString("strCategory").equals(DrinksCategories.Shot)) {
-                    drink = new Shot(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"));
+                    if (o.has("isFavorite")) {
+                        b = o.getBoolean("isFavorite");
+                    }
+                    drink = new Shot(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), b);
                 } else if (o.getString("strAlcoholic").equals(DrinksCategories.Alcoholic)) {
-                    drink = new AlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"));
+                    if (o.has("isFavorite")) {
+                        b = o.getBoolean("isFavorite");
+                    }
+                    drink = new AlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), b);
                 } else {
-                    drink = new NonAlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"));
+                    if (o.has("isFavorite")) {
+                        b = o.getBoolean("isFavorite");
+                    }
+                    drink = new NonAlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), b);
                 }
                 DrinksManager.addDrink(drink);
             }
@@ -86,7 +98,34 @@ public class DrinksManager {
         drinks.put(drink.getIdDrink(), drink);
     }
 
+    public static void setFavorite(String loggedUser) {
+        SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String key = "drinksForUser" + loggedUser;
+        String value = "";
+        JSONArray jsonUsers = new JSONArray();
+        try {
+            for (Drink d : drinks.values()) {
+                JSONObject o = new JSONObject();
+                o.put("idDrink", d.getIdDrink());
+                o.put("strDrink", d.getName());
+                o.put("strInstructions", d.getStrInstructions());
+                o.put("strCategory", d.getStrCategory());
+                o.put("strAlcoholic", d.getStrAlcoholic());
+                o.put("strGlass", d.getStrGlass());
+                o.put("strDrinkThumb", d.getStrDrinkThumb());
+                o.put("isFavorite", d.isFavorite());
 
+                jsonUsers.put(o);
+            }
+            value = jsonUsers.toString();
+        } catch (JSONException e) {
+            Log.e("JSON", e.getMessage());
+        }
+        editor.putString(key, value);
+        editor.commit();
+
+    }
 
 
 }

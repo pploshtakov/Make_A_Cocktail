@@ -185,4 +185,11 @@ public class TestShopActivity extends AppCompatActivity
     public String getLoggedUserName() {
         return loggedUser;
     }
+
+    @Override
+    protected void onDestroy() {
+//        DrinksManager.setFavorite(loggedUser);
+//        Log.e("FavoriteOnDestroy", "????????????");
+        super.onDestroy();
+    }
 }
