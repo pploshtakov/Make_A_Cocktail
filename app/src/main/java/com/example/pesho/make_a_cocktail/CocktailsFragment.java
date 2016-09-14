@@ -22,7 +22,9 @@ import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
  */
 public class CocktailsFragment extends Fragment {
     Activity activity;
-
+    MyDrinkAdapter adapter;
+    RecyclerView rv;
+    String loggedUser;
 
     public CocktailsFragment() {
         // Required empty public constructor
@@ -35,11 +37,10 @@ public class CocktailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cocktails, container, false);
         Intent intent = getActivity().getIntent();
-        String loggedUser = ((Communicator)activity).getLoggedUserName();
-        Log.e("LoggedInFragment", loggedUser);
-        RecyclerView rv = (RecyclerView) view.findViewById(R.id.cocktail_recycler_view);
+        loggedUser = ((Communicator)activity).getLoggedUserName();
+        rv = (RecyclerView) view.findViewById(R.id.cocktail_recycler_view);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        MyDrinkAdapter adapter = new MyDrinkAdapter(DrinksManager.getList(), rv, loggedUser);
+        adapter = new MyDrinkAdapter(DrinksManager.getList(), rv, loggedUser);
         rv.setAdapter(adapter);
         return view;
         //return inflater.inflate(R.layout.fragment_cocktails, container, false);
@@ -53,5 +54,13 @@ public class CocktailsFragment extends Fragment {
 
     interface Communicator {
         String getLoggedUserName();
+    }
+
+    @Override
+    public void onResume() {
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new MyDrinkAdapter(DrinksManager.getList(), rv, loggedUser);
+        rv.setAdapter(adapter);
+        super.onResume();
     }
 }

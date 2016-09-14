@@ -23,7 +23,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.pesho.make_a_coctail.SmartTabTestActivity" />
         <activity android:name=".SmartaTabTestActivity" />
-        <activity android:name=".DrinkInfoActivity"></activity>
+        <activity android:name=".DrinkInfoActivity" />
+        <activity android:name=".AddNewDrinkActivity"></activity>
     </application>
 
 </manifest>

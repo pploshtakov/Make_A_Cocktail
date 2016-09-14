@@ -31,9 +31,17 @@ import java.util.TreeMap;
  * Created by Pesho on 9/10/2016.
  */
 public class DrinksManager {
+    private static int addedDrinks = 0;
     private static DrinksManager ourInstance;
     private static TreeMap<Integer, Drink> drinks = new TreeMap<>();
     private static Activity activity;
+
+    public static int generateDrinkId() {
+        return addedDrinks++;
+    }
+
+
+
     public enum DrinksCategories {Alcoholic, NonAlcoholic, Shot};
 
 
@@ -94,8 +102,12 @@ public class DrinksManager {
         return drinks1;
     }
 
-    public static void addDrink(Drink drink) {
+    public static boolean addDrink(Drink drink) {
+        if (drinks.containsKey(drink.getIdDrink())) {
+            return false;
+        }
         drinks.put(drink.getIdDrink(), drink);
+        return true;
     }
 
     public static void setFavorite(String loggedUser) {

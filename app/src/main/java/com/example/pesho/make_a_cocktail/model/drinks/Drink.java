@@ -107,4 +107,8 @@ public abstract class Drink {
     public void setFavorite(boolean b) {
         this.isFavorite = b;
     }
+
+    public void setIdDrink(int idDrink) {
+        this.idDrink = idDrink;
+    }
 }

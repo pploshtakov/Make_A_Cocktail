@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -29,6 +28,8 @@ public class TestShopActivity extends AppCompatActivity
     String loggedUser;
     Toolbar toolbar;
     Toolbar toolbar1;
+    private static final int ADD_NEW_DRINK = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,8 +128,8 @@ public class TestShopActivity extends AppCompatActivity
             fragmentTransaction.commit();
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
-            setSupportActionBar(toolbar1);
-            setSupportActionBar(toolbar);
+//            setSupportActionBar(toolbar1);
+//            setSupportActionBar(toolbar);
         } else if (id == R.id.nav_ingredients) {
             //set fragment
             IngredientsFragment fragment = new IngredientsFragment();
@@ -137,8 +138,8 @@ public class TestShopActivity extends AppCompatActivity
             fragmentTransaction.commit();
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
-            setSupportActionBar(toolbar1);
-            setSupportActionBar(toolbar);
+//            setSupportActionBar(toolbar1);
+//            setSupportActionBar(toolbar);
         } else if (id == R.id.nav_random_drink) {
             //set fragment
             RandomDrinkFragment fragment = new RandomDrinkFragment();
@@ -147,28 +148,31 @@ public class TestShopActivity extends AppCompatActivity
             fragmentTransaction.commit();
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
-            setSupportActionBar(toolbar1);
-            setSupportActionBar(toolbar);
+//            setSupportActionBar(toolbar1);
+//            setSupportActionBar(toolbar);
         } else if (id == R.id.nav_profile) {
             //set fragment
             ProfileFragment fragment = new ProfileFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
-            setSupportActionBar(toolbar1);
-            setSupportActionBar(toolbar);
-        } else if (id == R.id.nav_new_drink) {
-            //set fragment
-            NewDrinksFragment fragment = new NewDrinksFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
-            setSupportActionBar(toolbar1);
-            setSupportActionBar(toolbar);
+//            setSupportActionBar(toolbar1);
+//            setSupportActionBar(toolbar);
+        } else if (id == R.id.nav_new_drink) {
+            //set fragment
+//            NewDrinksFragment fragment = new NewDrinksFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//            toolbar = (Toolbar) findViewById(R.id.toolbar);
+//            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
+//            setSupportActionBar(toolbar1);
+//            setSupportActionBar(toolbar);
+            Intent intent = new Intent(TestShopActivity.this, AddNewDrinkActivity.class);
+            intent.putExtra("loggedUser", loggedUser);
+            startActivityForResult(intent, ADD_NEW_DRINK);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -192,4 +196,8 @@ public class TestShopActivity extends AppCompatActivity
 //        Log.e("FavoriteOnDestroy", "????????????");
         super.onDestroy();
     }
+
+
+
+
 }

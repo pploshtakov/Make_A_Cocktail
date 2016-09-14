@@ -13,6 +13,11 @@
     <string name="shopping_list">Shoping List</string>
     <string name="bar_shelf">Bar Shelf</string>
     <string name="search">Search</string>
+    <string-array name="glasses">
+        <item>Cocktail glass</item>
+        <item>Coupette glass</item>
+        <item>Shot glass</item>
+    </string-array>
     <string-array name="drinks">
         <item>Vodka</item>
         <item>Whiskey</item>
@@ -32,9 +37,9 @@
 
     <string-array name="categories">
         <item>Categories</item>
-        <item>Alcoholic coctails</item>
-        <item>Non-Alcoholic cotails</item>
-        <item>Shots</item>
+        <item>Alcoholic cocktail</item>
+        <item>NonAlcoholic cocktail</item>
+        <item>Shot</item>
     </string-array>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_test">TestActivity</string>
@@ -47,6 +52,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drink_name">Drink name</string>
+    <string name="instructions">Instructions</string>
+    <string name="upload_image">Upload photo</string>
+    <string name="add_drink">Add drink</string>
+    <string name="alcoholic">Alcoholic</string>
 
 
 </resources>
