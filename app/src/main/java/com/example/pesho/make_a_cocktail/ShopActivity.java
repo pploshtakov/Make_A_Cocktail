@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
 import android.view.MenuInflater;
 import android.view.View;
@@ -18,17 +20,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShopActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener, CocktailsFragment.Communicator {
+        implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener, AllDrinksFragment.Communicator {
     NavigationView navigationView;
     String loggedUser;
     Toolbar toolbar;
-    Toolbar toolbar1;
+    TabLayout toolbar1;
     private static final int ADD_NEW_DRINK = 1;
     private static final int EDIT_PROFILE = 2;
 
@@ -41,16 +47,16 @@ public class ShopActivity extends AppCompatActivity
         Intent intent = getIntent();
         this.loggedUser = intent.getStringExtra("loggedUser");
         DrinksManager.getInstance(this, loggedUser);
+        UsersManager.loadUserData(loggedUser);
 
         //set fragment
-        CocktailsFragment fragment = new CocktailsFragment();
+        AllDrinksFragment fragment = new AllDrinksFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
-        setSupportActionBar(toolbar1);
-        setSupportActionBar(toolbar);
+        toolbar1 = (TabLayout) findViewById(R.id.myToolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +75,45 @@ public class ShopActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        toolbar1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Fragment fragment;
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                switch (tab.getPosition()) {
+                    case 0:
+                        fragment = new AllDrinksFragment();
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, fragment);
+                        fragmentTransaction.commit();
+                        break;
+                    case 1:
+                        Toast.makeText(ShopActivity.this, "Cocktails", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(ShopActivity.this, "Shots", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        fragment = new AllDrinksFragment();
+                        ((AllDrinksFragment)fragment).refreshList(UsersManager.getFavoriteList(loggedUser));
+                        Toast.makeText(ShopActivity.this, "Favorite", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(ShopActivity.this, "MyDrinks", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
@@ -126,7 +171,7 @@ public class ShopActivity extends AppCompatActivity
 
         if (id == R.id.nav_drinks) {
             //set fragment
-            CocktailsFragment fragment = new CocktailsFragment();
+            AllDrinksFragment fragment = new AllDrinksFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
@@ -182,6 +227,7 @@ public class ShopActivity extends AppCompatActivity
         return true;
     }
 
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -191,6 +237,8 @@ public class ShopActivity extends AppCompatActivity
     public String getLoggedUserName() {
         return loggedUser;
     }
+
+
 
     @Override
     protected void onDestroy() {

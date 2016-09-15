@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -102,6 +103,14 @@ public class UsersManager {
         users.get(loggedUser).removeFromFavorite(drink);
     }
 
+    public static ArrayList<Drink> getFavoriteList (String loggedUser) {
+        User u = users.get(loggedUser);
+        return u.getFavoriteDrinks();
+    }
 
+    public static void loadUserData(String loggedUser) {
+        User u = users.get(loggedUser);
+        u.loadFavoriteList(activity);
+    }
 }
 
