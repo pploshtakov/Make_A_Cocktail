@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/yellowBackground"
-    tools:context="com.example.pesho.make_a_cocktail.TestShopActivity">
+    tools:context=".ShopActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

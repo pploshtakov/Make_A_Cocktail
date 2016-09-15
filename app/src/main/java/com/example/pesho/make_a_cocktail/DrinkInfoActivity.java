@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.pesho.make_a_cocktail.model.drinks.Drink;
+import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
+
 public class DrinkInfoActivity extends AppCompatActivity {
     ImageView drinkIV;
     TextView titleTV;
@@ -19,11 +22,9 @@ public class DrinkInfoActivity extends AppCompatActivity {
         titleTV = (TextView) findViewById(R.id.info_title_TV);
         instrTV = (TextView) findViewById(R.id.info_instructions_TV);
         Intent intent = getIntent();
-        int image = Integer.parseInt(intent.getStringExtra("image"));
-        String title = intent.getStringExtra("title");
-        String instr = intent.getStringExtra("instructions");
-        drinkIV.setImageResource(image);
-        titleTV.setText(title);
-        instrTV.setText(instr);
+        Drink drink = DrinksManager.getDrink(intent.getIntExtra("idDrink", 0));
+        drinkIV.setImageResource(drink.getImage());
+        titleTV.setText(drink.getName());
+        instrTV.setText(drink.getStrInstructions());
     }
 }

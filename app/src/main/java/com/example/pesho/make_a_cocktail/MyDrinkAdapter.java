@@ -97,9 +97,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
             Drink item = drinks.get(itemPosition);
             Intent intent = new Intent(v.getContext(), DrinkInfoActivity.class);
             Integer in = item.getImage();
-            intent.putExtra("image", in.toString());
-            intent.putExtra("title", item.getName());
-            intent.putExtra("instructions", item.getStrInstructions());
+            intent.putExtra("idDrink", item.getIdDrink());
             v.getContext().startActivity(intent);
         }
     }
