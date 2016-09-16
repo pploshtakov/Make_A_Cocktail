@@ -37,6 +37,8 @@
         android:gravity="center"
         android:hint="@string/instructions"
         android:layout_margin="10dp"
+        android:maxLines = "5"
+        android:scrollbars = "vertical"
         android:id="@+id/add_new_drink_instructions_ET"
         />
     <Spinner

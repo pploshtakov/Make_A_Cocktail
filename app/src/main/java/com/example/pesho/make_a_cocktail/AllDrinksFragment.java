@@ -16,17 +16,20 @@ import android.view.ViewGroup;
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CocktailsFragment extends Fragment {
+public class AllDrinksFragment extends Fragment {
     Activity activity;
     MyDrinkAdapter adapter;
     RecyclerView rv;
     String loggedUser;
 
-    public CocktailsFragment() {
+    public AllDrinksFragment() {
         // Required empty public constructor
     }
 
@@ -35,13 +38,15 @@ public class CocktailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_cocktails, container, false);
+        View view = inflater.inflate(R.layout.fragment_all_drinks, container, false);
         Intent intent = getActivity().getIntent();
         loggedUser = ((Communicator)activity).getLoggedUserName();
         rv = (RecyclerView) view.findViewById(R.id.cocktail_recycler_view);
+       // rv.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MyDrinkAdapter(DrinksManager.getList(), rv, loggedUser);
         rv.setAdapter(adapter);
+
         return view;
         //return inflater.inflate(R.layout.fragment_cocktails, container, false);
     }
@@ -50,6 +55,11 @@ public class CocktailsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.activity = (Activity) context;
+    }
+    //TODO !!!
+    public void refreshList(ArrayList<Drink> drinks) {
+        adapter = new MyDrinkAdapter(drinks, rv, loggedUser);
+        adapter.notifyDataSetChanged();
     }
 
     interface Communicator {

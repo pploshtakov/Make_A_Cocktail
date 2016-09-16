@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -147,5 +150,9 @@ public class User {
         } catch (JSONException e) {
             Log.e("JSON", e.getMessage());
         }
+    }
+
+    public ArrayList<Drink> getFavoriteDrinks() {
+        return new ArrayList<Drink>(favorite);
     }
 }

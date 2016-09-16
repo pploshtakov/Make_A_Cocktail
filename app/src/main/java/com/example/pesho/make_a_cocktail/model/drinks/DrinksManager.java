@@ -25,6 +25,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.TreeMap;
 
 /**
@@ -40,6 +42,16 @@ public class DrinksManager {
         return addedDrinks++;
     }
 
+    public static Drink getDrink(int idDrink) {
+        return drinks.get(idDrink);
+    }
+
+    public static Drink getRandomDrink() {
+        List<Integer> idS = new ArrayList<>();
+        idS.addAll(drinks.keySet());
+        int r = new Random().nextInt(idS.size());
+        return drinks.get(idS.get(r));
+    }
 
 
     public enum DrinksCategories {Alcoholic, NonAlcoholic, Shot};

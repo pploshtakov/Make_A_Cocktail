@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-
+<android.support.design.widget.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_red_light"
-    >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/holo_red_dark"
+    app:tabMode="scrollable"
+    android:id="@+id/tab_layout">
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="All"
-            android:background="@android:color/holo_red_dark"
-            android:id="@+id/TBButtonAll"
             />
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="Cocktails"
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_red_dark"
-            android:id="@+id/TBCocktails"
+            android:text="Cocktails"
             />
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Shots"
-            android:background="@android:color/holo_red_dark"
-            android:id="@+id/TBShots"
             />
-    </LinearLayout>
+    <android.support.design.widget.TabItem
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Favorite"
+        />
+    <android.support.design.widget.TabItem
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="My drinks"
+        android:id="@+id/TBCocktails1"
+        />
 
-</android.support.v7.widget.Toolbar>
+
+
+</android.support.design.widget.TabLayout>

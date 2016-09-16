@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
-import com.example.pesho.make_a_cocktail.model.users.User;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 public class LoginActivity extends AppCompatActivity {
@@ -50,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login = new Intent(LoginActivity.this, TestShopActivity.class);
+                Intent login = new Intent(LoginActivity.this, ShopActivity.class);
                 if (UsersManager.checkPass(userName.getText().toString(), pass.getText().toString())) {
                     login.putExtra("loggedUser", userName.getText().toString());
                     startActivity(login);

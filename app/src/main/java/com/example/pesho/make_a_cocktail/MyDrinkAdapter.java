@@ -47,6 +47,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
         Drink drink = drinks.get(position);
         holder.drinkImageView.setImageResource(drink.getImage());
         holder.drinkTitleTextView.setText(drink.getName());
+        holder.drinkCategoryTV.setText(drink.getStrCategory());
         if (drink.isFavorite()) {
             holder.drinkFavoriteImageButton.setImageResource(R.drawable.favorite_pic);
         } else {
@@ -80,12 +81,14 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
         ImageView drinkImageView;
         TextView drinkTitleTextView;
         ImageButton drinkFavoriteImageButton;
+        TextView drinkCategoryTV;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             drinkImageView = (ImageView) itemView.findViewById(R.id.drink_info_pic);
             drinkTitleTextView = (TextView) itemView.findViewById(R.id.drink_info_title);
             drinkFavoriteImageButton = (ImageButton) itemView.findViewById(R.id.drink_info_favorite_button);
+            drinkCategoryTV = (TextView) itemView.findViewById(R.id.drink_info_category);
         }
     }
 
@@ -97,9 +100,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
             Drink item = drinks.get(itemPosition);
             Intent intent = new Intent(v.getContext(), DrinkInfoActivity.class);
             Integer in = item.getImage();
-            intent.putExtra("image", in.toString());
-            intent.putExtra("title", item.getName());
-            intent.putExtra("instructions", item.getStrInstructions());
+            intent.putExtra("idDrink", item.getIdDrink());
             v.getContext().startActivity(intent);
         }
     }
