@@ -22,14 +22,44 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
         android:id="@+id/info_title_TV"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:id="@+id/drink_info_category_TV"
+        />
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:textStyle="italic"
+    android:id="@+id/drink_info_glass_TV"
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:id="@+id/drink_info_alcoholic_TV"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         android:gravity="center"
+        android:textStyle="italic"
+        android:maxLines = "5"
+        android:scrollbars = "vertical"
         android:id="@+id/info_instructions_TV"
         />
+
 
 </LinearLayout>
