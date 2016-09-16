@@ -10,6 +10,14 @@
     android:background="@color/darkBlue"
     tools:context="com.example.pesho.make_a_cocktail.ProfileActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/helloUserTV"
+        android:text="Hello "
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"/>
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +25,7 @@
         android:ems="10"
         android:hint="Enter new name"
         android:id="@+id/newNameET"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/helloUserTV"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -26,7 +34,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:hint="Enter new address"
+        android:hint="Enter new email address"
         android:id="@+id/newAddressET"
         android:layout_below="@+id/newNameET"
         android:layout_alignParentLeft="true"
@@ -37,18 +45,18 @@
         android:layout_height="wrap_content"
         android:text="EDIT"
         android:id="@+id/editNameButton"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/newNameET"
-        android:layout_toEndOf="@+id/newNameET" />
+        android:layout_alignTop="@+id/newNameET"
+        android:layout_alignLeft="@+id/editAddressButton"
+        android:layout_alignStart="@+id/editAddressButton" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="EDIT"
         android:id="@+id/editAddressButton"
-        android:layout_below="@+id/editNameButton"
-        android:layout_toRightOf="@+id/newAddressET"
-        android:layout_toEndOf="@+id/newAddressET" />
+        android:layout_below="@+id/newNameET"
+        android:layout_alignLeft="@+id/editPasswordButton"
+        android:layout_alignStart="@+id/editPasswordButton" />
 
     <EditText
         android:layout_width="wrap_content"

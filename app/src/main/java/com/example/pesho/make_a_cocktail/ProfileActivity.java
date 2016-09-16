@@ -3,11 +3,15 @@ package com.example.pesho.make_a_cocktail;
 import android.os.UserManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
+
+import org.w3c.dom.Text;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -21,7 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button editAddressButton;
     Button editPassButton;
 
-
+    TextView helloUserTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,30 +41,38 @@ public class ProfileActivity extends AppCompatActivity {
         editAddressButton = (Button) findViewById(R.id.editAddressButton);
         editPassButton = (Button) findViewById(R.id.editPasswordButton);
 
+        helloUserTV = (TextView) findViewById(R.id.helloUserTV);
+        helloUserTV.setText("Hello " +
+                UsersManager.getInstance(ProfileActivity.this).getName(getIntent().getStringExtra("username")));
+
         //TODO: change values in shared preffs
         editNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            UsersManager.getInstance(ProfileActivity.this).changeData("name",getIntent().getStringExtra("username"),editNameET.getText().toString());
             }
         });
 
         editAddressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                UsersManager.getInstance(ProfileActivity.this).changeData("email",getIntent().getStringExtra("username"),editAddressET.getText().toString());
             }
         });
 
+        //TODO fix: method is never entered by click !?!
         editPassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //check if old password is correct
+                Log.e("pass method", "entered");
                if (UsersManager.getInstance(ProfileActivity.this).checkPass
                        (getIntent().getStringExtra("username"),editOldPassET.getText().toString())){
-                   //check if new passwords match
-                   if(editNameET.getText().toString().equals(editNewPass2ET.toString())){
 
+                   //check if new passwords match
+                   if(editNewPassET.getText().toString().equals(editNewPass2ET.toString())){
+                       UsersManager.getInstance(ProfileActivity.this).changeData("password",getIntent().getStringExtra("username"),editNewPassET.getText().toString());
                    }
                }
             }
