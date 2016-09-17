@@ -58,7 +58,8 @@ public class AllDrinksFragment extends Fragment {
     }
     //TODO !!!
     public void refreshList(ArrayList<Drink> drinks) {
-        adapter = new MyDrinkAdapter(drinks, rv, loggedUser);
+        adapter = (MyDrinkAdapter) rv.getAdapter();
+        adapter.setNewList(drinks);
         adapter.notifyDataSetChanged();
     }
 

@@ -185,5 +185,10 @@ public class UsersManager {
         editor.putString(key, "No logged user!");
         editor.commit();
     }
+
+    public static ArrayList<Drink> getMyDrinks(String loggedUser) {
+        User u = users.get(loggedUser);
+        return u.getMyDrinksList();
+    }
 }
 

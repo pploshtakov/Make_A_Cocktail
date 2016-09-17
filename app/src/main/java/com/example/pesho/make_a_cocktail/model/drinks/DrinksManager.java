@@ -53,6 +53,26 @@ public class DrinksManager {
         return drinks.get(idS.get(r));
     }
 
+    public static ArrayList<Drink> getCocktailsList() {
+        ArrayList<Drink> cocktails = new ArrayList<>();
+        for (Drink d : drinks.values()) {
+            if (d instanceof Cocktail) {
+                cocktails.add(d);
+            }
+        }
+        return cocktails;
+    }
+
+    public static ArrayList<Drink> getShotsList() {
+        ArrayList<Drink> shots = new ArrayList<>();
+        for (Drink d : drinks.values()) {
+            if (d instanceof Shot) {
+                shots.add(d);
+            }
+        }
+        return shots;
+    }
+
 
     public enum DrinksCategories {Alcoholic, NonAlcoholic, Shot};
 

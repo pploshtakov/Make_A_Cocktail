@@ -155,4 +155,10 @@ public class User {
     public ArrayList<Drink> getFavoriteDrinks() {
         return new ArrayList<Drink>(favorite);
     }
+
+    public ArrayList<Drink> getMyDrinksList() {
+        ArrayList<Drink> drinks = new ArrayList<>();
+        drinks.addAll(myDrinks);
+        return drinks;
+    }
 }

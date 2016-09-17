@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -82,26 +83,29 @@ public class ShopActivity extends AppCompatActivity
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment fragment;
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new AllDrinksFragment();
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, fragment);
-                        fragmentTransaction.commit();
+                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                        ((AllDrinksFragment)fragment).refreshList(DrinksManager.getList());
                         break;
                     case 1:
+                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                        ((AllDrinksFragment)fragment).refreshList(DrinksManager.getCocktailsList());
                         Toast.makeText(ShopActivity.this, "Cocktails", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
+                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                        ((AllDrinksFragment)fragment).refreshList(DrinksManager.getShotsList());
                         Toast.makeText(ShopActivity.this, "Shots", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
-                        fragment = new AllDrinksFragment();
+                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                         ((AllDrinksFragment)fragment).refreshList(UsersManager.getFavoriteList(loggedUser));
                         Toast.makeText(ShopActivity.this, "Favorite", Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
+                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                        ((AllDrinksFragment)fragment).refreshList(UsersManager.getMyDrinks(loggedUser));
                         Toast.makeText(ShopActivity.this, "MyDrinks", Toast.LENGTH_SHORT).show();
                         break;
                 }

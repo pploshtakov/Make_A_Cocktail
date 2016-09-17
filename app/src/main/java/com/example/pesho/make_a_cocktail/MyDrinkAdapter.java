@@ -104,4 +104,8 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
             v.getContext().startActivity(intent);
         }
     }
+
+    public void setNewList(ArrayList<Drink> drinks) {
+        this.drinks = drinks;
+    }
 }
