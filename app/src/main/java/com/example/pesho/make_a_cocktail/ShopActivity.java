@@ -35,6 +35,7 @@ public class ShopActivity extends AppCompatActivity
     String loggedUser;
     Toolbar toolbar;
     TabLayout toolbar1;
+    DrawerLayout myDrawer;
     private static final int ADD_NEW_DRINK = 1;
     private static final int EDIT_PROFILE = 2;
 
@@ -55,6 +56,7 @@ public class ShopActivity extends AppCompatActivity
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
+        myDrawer = (DrawerLayout) findViewById(R.id.drawer_layout   );
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar1 = (TabLayout) findViewById(R.id.myToolbar);
 
@@ -176,6 +178,7 @@ public class ShopActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
+            myDrawer.closeDrawers();
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
 //            setSupportActionBar(toolbar1);
@@ -186,6 +189,7 @@ public class ShopActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
+            myDrawer.closeDrawers();
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
 //            setSupportActionBar(toolbar1);
