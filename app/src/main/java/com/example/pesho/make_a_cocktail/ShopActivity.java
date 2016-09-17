@@ -46,6 +46,7 @@ public class ShopActivity extends AppCompatActivity
         UsersManager.getInstance(this);
         Intent intent = getIntent();
         this.loggedUser = intent.getStringExtra("loggedUser");
+        UsersManager.saveLastLoggedUser(loggedUser);
         DrinksManager.getInstance(this, loggedUser);
         UsersManager.loadUserData(loggedUser);
 
@@ -220,6 +221,11 @@ public class ShopActivity extends AppCompatActivity
             Intent intent = new Intent(ShopActivity.this, AddNewDrinkActivity.class);
             intent.putExtra("loggedUser", loggedUser);
             startActivityForResult(intent, ADD_NEW_DRINK);
+        } else if (id == R.id.nav_logout) {
+            Intent intent = new Intent(ShopActivity.this, LoginActivity.class);
+            UsersManager.logout();
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

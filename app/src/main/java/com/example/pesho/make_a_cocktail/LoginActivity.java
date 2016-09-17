@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         UsersManager.getInstance(LoginActivity.this);
+        String loggedUser = UsersManager.getLastLoggedUser();
+        if (!loggedUser.equals("No logged user!")) {
+            Intent login = new Intent(LoginActivity.this, ShopActivity.class);
+            login.putExtra("loggedUser", loggedUser);
+            startActivity(login);
+            finish();
+        }
         register = (Button) findViewById(R.id.LPRegisterButton);
         login = (Button) findViewById(R.id.LPLoginButton);
         regByFace = (Button) findViewById(R.id.LPFacebookLoginButton);

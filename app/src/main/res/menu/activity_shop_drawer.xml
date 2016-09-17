@@ -23,6 +23,11 @@
             android:id="@+id/nav_new_drink"
             android:icon="@drawable/nav_new_drink_pic"
             android:title="Add New" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/nav_logout_pic"
+            android:title="Logout" />
     </group>
 
 

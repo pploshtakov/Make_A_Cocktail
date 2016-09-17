@@ -164,6 +164,26 @@ public class UsersManager {
         u.loadFavoriteList(activity);
     }
 
+    public static void saveLastLoggedUser (String loggedUser) {
+        SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String key = "lastLoggedUser";
+        editor.putString(key, loggedUser);
+        editor.commit();
+    }
 
+    public static String getLastLoggedUser () {
+        SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
+        String loggedUser = prefs.getString("lastLoggedUser", "No logged user!");
+        return  loggedUser;
+    }
+
+    public static void logout() {
+        SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String key = "lastLoggedUser";
+        editor.putString(key, "No logged user!");
+        editor.commit();
+    }
 }
 
