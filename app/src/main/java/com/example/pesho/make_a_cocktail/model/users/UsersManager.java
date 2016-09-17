@@ -33,6 +33,7 @@ public class UsersManager {
     private UsersManager(Activity activity) {
         this.activity = activity;
         String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("registeredUsers", "No registered users!");
+
         try {
             JSONArray jsonArray = new JSONArray(json);
             for(int i = 0; i < jsonArray.length(); i++) {
@@ -43,6 +44,55 @@ public class UsersManager {
         } catch (JSONException e) {
             Log.e("JSON", e.getMessage());
         }
+    }
+
+    public String getName(String username){
+        return users.get(username).getName();
+    }
+
+    public void changeData(String dataType,String username, String data){
+        //read json with users
+        String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("registeredUsers", "No registered users!");
+        Log.e("Before", json);
+        String value = "";
+        try {
+            //find user and update json and map
+            JSONArray jsonArray = new JSONArray(json);
+            for(int i = 0; i < jsonArray.length(); i++) {
+                JSONObject o = jsonArray.getJSONObject(i);
+                User user = new User(o.getString("name"), o.getString("userName"), o.getString("password"), o.getString("email"));
+                if(o.getString("userName").equals(username)){
+                   if(dataType.equals("name")) {
+                       user.setName(data); //set new name
+                       o.put("name", data); //update it in the json file
+                       users.put(user.getUserName(), user); // update it in the hash map
+                       break;
+                   }else if(dataType.equals("email")){
+                       user.setEmail(data); //set new name
+                       o.put("email", data); //update it in the json file
+                       users.put(user.getUserName(), user); // update it in the hash map
+                       break;
+                   }else if(dataType.equals("password")){
+                       user.setPass(data); //set new name
+                       o.put("password", data); //update it in the json file
+                       users.put(user.getUserName(), user); // update it in the hash map
+                       break;
+                   }
+               }
+            }
+            value = jsonArray.toString();
+            Log.e("after",value);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //save the updated json in shared preffs
+        SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String key = "registeredUsers";
+        editor.putString(key, value);
+        editor.commit();
+
     }
 
     public static void registerUser(Activity activity, User user) {
@@ -62,6 +112,7 @@ public class UsersManager {
                     jsonUsers.put(o);
                 }
             value = jsonUsers.toString();
+            Log.e("users",value);
             } catch (JSONException e) {
                 Log.e("JSON", e.getMessage());
             }
