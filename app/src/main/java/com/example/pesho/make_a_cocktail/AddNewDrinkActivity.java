@@ -16,6 +16,7 @@ import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 import com.example.pesho.make_a_cocktail.model.drinks.NonAlcoholicCocktail;
 import com.example.pesho.make_a_cocktail.model.drinks.Shot;
+import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 public class AddNewDrinkActivity extends AppCompatActivity {
     EditText drinkNameET;
@@ -86,6 +87,7 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                     int id = DrinksManager.generateDrinkId();
                     drink = new AlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Alcoholic", glass, "", false  );
                     setResult(RESULT_OK);
+                    UsersManager.addMyDrink(drink, loggedUser);
                     DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
                     finish();
                     return;
@@ -93,13 +95,15 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                     int id = DrinksManager.generateDrinkId();
                     drink = new NonAlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "NonAlcoholic", glass, "", false  );
                     setResult(RESULT_OK);
+                    UsersManager.addMyDrink(drink, loggedUser);
                     DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
                     finish();
                     return;
                 } else if (category.equals("Shot")) {
                     int id = DrinksManager.generateDrinkId();
-                    drink = new Shot(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Alcoholic", glass, "", false  );
+                    drink = new Shot(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Slcoholic", glass, "", false  );
                     setResult(RESULT_OK);
+                    UsersManager.addMyDrink(drink, loggedUser);
                     DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
                     finish();
                     return;

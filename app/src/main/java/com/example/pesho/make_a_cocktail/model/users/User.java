@@ -55,7 +55,12 @@ public class User {
                 return lhs.getName().compareTo(rhs.getName());
             }
         });
-        this.myDrinks = new TreeSet<Drink>();
+        this.myDrinks = new TreeSet<Drink>(new Comparator<Drink>() {
+            @Override
+            public int compare(Drink lhs, Drink rhs) {
+                return lhs.getName().compareTo(rhs.getName());
+            }
+        });
     }
 
     public void setUserName(String userName) throws NoNameException {
@@ -130,7 +135,7 @@ public class User {
         editor.commit();
     }
 
-    public void loadFavoriteList(Activity activity) {
+    public void loadUserLists(Activity activity) {
         String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("favoriteForUser" + this.userName, "Doesn't have drinks!");
         try {
             JSONArray jsonArray = new JSONArray(json);
@@ -145,7 +150,27 @@ public class User {
                 } else {
                     drink = new NonAlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), b);
                 }
-                UsersManager.addFavoriteDrink(this.userName, drink);
+                addToFavorite(drink);
+                saveFavoriteList(activity);
+            }
+        } catch (JSONException e) {
+            Log.e("JSON", e.getMessage());
+        }
+        json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("myDrinkForUser" + this.userName, "Doesn't have drinks!");
+        Log.e("myDrinks", json);
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            for(int i = 0; i < jsonArray.length(); i++) {
+                JSONObject o = jsonArray.getJSONObject(i);
+                Drink drink;
+                if (o.getString("strCategory").equals(DrinksManager.DrinksCategories.Shot)) {
+                    drink = new Shot(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), o.getBoolean("isFavorite"));
+                } else if (o.getString("strAlcoholic").equals(DrinksManager.DrinksCategories.Alcoholic)) {
+                    drink = new AlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), o.getBoolean("isFavorite"));
+                } else {
+                    drink = new NonAlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), o.getBoolean("isFavorite"));
+                }
+                myDrinks.add(drink);
             }
         } catch (JSONException e) {
             Log.e("JSON", e.getMessage());
@@ -160,5 +185,33 @@ public class User {
         ArrayList<Drink> drinks = new ArrayList<>();
         drinks.addAll(myDrinks);
         return drinks;
+    }
+
+    public void addMyDrink(Drink drink , Activity activity) {
+        myDrinks.add(drink);
+        SharedPreferences prefs = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String key = "myDrinkForUser" + this.userName;
+        String value = "";
+        JSONArray jsonUsers = new JSONArray();
+        try {
+            for (Drink d : myDrinks) {
+                JSONObject o = new JSONObject();
+                o.put("idDrink", d.getIdDrink());
+                o.put("strDrink", d.getName());
+                o.put("strInstructions", d.getStrInstructions());
+                o.put("strCategory", d.getStrCategory());
+                o.put("strAlcoholic", d.getStrAlcoholic());
+                o.put("strGlass", d.getStrGlass());
+                o.put("strDrinkThumb", d.getStrDrinkThumb());
+                o.put("isFavorite", d.isFavorite());
+                jsonUsers.put(o);
+            }
+            value = jsonUsers.toString();
+        } catch (JSONException e) {
+            Log.e("JSON", e.getMessage());
+        }
+        editor.putString(key, value);
+        editor.commit();
     }
 }

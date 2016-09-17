@@ -161,7 +161,7 @@ public class UsersManager {
 
     public static void loadUserData(String loggedUser) {
         User u = users.get(loggedUser);
-        u.loadFavoriteList(activity);
+        u.loadUserLists(activity);
     }
 
     public static void saveLastLoggedUser (String loggedUser) {
@@ -189,6 +189,11 @@ public class UsersManager {
     public static ArrayList<Drink> getMyDrinks(String loggedUser) {
         User u = users.get(loggedUser);
         return u.getMyDrinksList();
+    }
+
+    public static void addMyDrink(Drink drink, String loggedUser) {
+        User u = users.get(loggedUser);
+        u.addMyDrink(drink, activity);
     }
 }
 
