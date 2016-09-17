@@ -112,5 +112,7 @@ public class UsersManager {
         User u = users.get(loggedUser);
         u.loadFavoriteList(activity);
     }
+
+
 }
 
