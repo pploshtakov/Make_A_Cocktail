@@ -105,7 +105,7 @@ public class DrinksManager {
                 JSONObject o = jsonArray.getJSONObject(i);
                 Drink drink;
                 boolean b = false;
-                if (o.getString("strCategory").equals(DrinksCategories.Shot)) {
+                if (o.getString("strCategory").equals("Shot")) {
                     if (o.has("isFavorite")) {
                         b = o.getBoolean("isFavorite");
                     }

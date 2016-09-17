@@ -151,7 +151,7 @@ public class UsersManager {
     }
 
     public static void removeFavoriteDrink(String loggedUser, Drink drink) {
-        users.get(loggedUser).removeFromFavorite(drink);
+        users.get(loggedUser).removeFromFavorite(drink, activity);
     }
 
     public static ArrayList<Drink> getFavoriteList (String loggedUser) {

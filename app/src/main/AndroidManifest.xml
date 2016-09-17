@@ -18,10 +18,8 @@
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".ShopActivity"
-            android:label="@string/title_activity_test_shop"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.pesho.make_a_coctail.SmartTabTestActivity" />
-        <activity android:name=".SmartaTabTestActivity" />
         <activity android:name=".DrinkInfoActivity" />
         <activity android:name=".AddNewDrinkActivity" />
         <activity android:name=".ProfileActivity"></activity>

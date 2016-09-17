@@ -104,8 +104,9 @@ public class User {
         favorite.add(drink);
     }
 
-    public void removeFromFavorite(Drink drink) {
+    public void removeFromFavorite(Drink drink, Activity activity) {
         favorite.remove(drink);
+        saveFavoriteList(activity);
     }
 
     public void saveFavoriteList(Activity activity) {

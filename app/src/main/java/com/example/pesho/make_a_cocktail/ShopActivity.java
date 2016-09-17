@@ -37,6 +37,7 @@ public class ShopActivity extends AppCompatActivity
     Toolbar toolbar;
     TabLayout toolbar1;
     DrawerLayout myDrawer;
+    SearchView searchView;
     private static final int ADD_NEW_DRINK = 1;
     private static final int EDIT_PROFILE = 2;
 
@@ -60,16 +61,7 @@ public class ShopActivity extends AppCompatActivity
         myDrawer = (DrawerLayout) findViewById(R.id.drawer_layout   );
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar1 = (TabLayout) findViewById(R.id.myToolbar);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,6 +71,8 @@ public class ShopActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
         toolbar1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -132,7 +126,7 @@ public class ShopActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
+    //get search menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -145,13 +139,28 @@ public class ShopActivity extends AppCompatActivity
 
         SearchManager searchManager = (SearchManager) ShopActivity.this.getSystemService(Context.SEARCH_SERVICE);
 
-        SearchView searchView = null;
+        searchView = null;
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
         }
         if (searchView != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(ShopActivity.this.getComponentName()));
         }
+        //set on Query text listener
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            Fragment fr;
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            //get text
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                fr = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                ((AllDrinksFragment)fr).search(newText);
+                return true;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 

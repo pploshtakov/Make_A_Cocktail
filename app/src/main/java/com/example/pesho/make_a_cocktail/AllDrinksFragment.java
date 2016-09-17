@@ -28,6 +28,7 @@ public class AllDrinksFragment extends Fragment {
     MyDrinkAdapter adapter;
     RecyclerView rv;
     String loggedUser;
+    ArrayList<Drink> currentDrinks = new ArrayList<>();
 
     public AllDrinksFragment() {
         // Required empty public constructor
@@ -44,7 +45,8 @@ public class AllDrinksFragment extends Fragment {
         rv = (RecyclerView) view.findViewById(R.id.cocktail_recycler_view);
        // rv.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new MyDrinkAdapter(DrinksManager.getList(), rv, loggedUser);
+        currentDrinks = DrinksManager.getList();
+        adapter = new MyDrinkAdapter(currentDrinks, rv, loggedUser);
         rv.setAdapter(adapter);
 
         return view;
@@ -60,8 +62,25 @@ public class AllDrinksFragment extends Fragment {
     public void refreshList(ArrayList<Drink> drinks) {
         adapter = (MyDrinkAdapter) rv.getAdapter();
         adapter.setNewList(drinks);
+        currentDrinks = drinks;
         adapter.notifyDataSetChanged();
     }
+    //search drinks in current list
+    public void search (String newText) {
+        ArrayList<Drink> drink = new ArrayList<>();
+        newText = newText.toLowerCase();
+        for (Drink d: currentDrinks) {
+            String name = d.getName().toLowerCase();
+            if (name.contains(newText)) {
+                drink.add(d);
+            }
+        }
+        adapter = (MyDrinkAdapter) rv.getAdapter();
+        adapter.setNewList(drink);
+        adapter.notifyDataSetChanged();
+    }
+
+
 
     interface Communicator {
         String getLoggedUserName();
