@@ -49,20 +49,20 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
         holder.drinkTitleTextView.setText(drink.getName());
         holder.drinkCategoryTV.setText(drink.getStrCategory());
         if (drink.isFavorite()) {
-            holder.drinkFavoriteImageButton.setImageResource(R.drawable.favorite_pic);
+            holder.drinkFavoriteImageButton.setImageResource(R.drawable.star2_pic);
         } else {
-            holder.drinkFavoriteImageButton.setImageResource(R.drawable.heart_pic);
+            holder.drinkFavoriteImageButton.setImageResource(R.drawable.star1_pic);
         }
         holder.drinkFavoriteImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Drink drink = drinks.get(position);
                 if (!drink.isFavorite()) {
-                    holder.drinkFavoriteImageButton.setImageResource(R.drawable.favorite_pic);
+                    holder.drinkFavoriteImageButton.setImageResource(R.drawable.star2_pic);
                     drink.setFavorite(true);
                     UsersManager.addFavoriteDrink(loggedUser,drink);
                 } else {
-                    holder.drinkFavoriteImageButton.setImageResource(R.drawable.heart_pic);
+                    holder.drinkFavoriteImageButton.setImageResource(R.drawable.star1_pic);
                     drink.setFavorite(false);
                     UsersManager.removeFavoriteDrink(loggedUser,drink);
                 }

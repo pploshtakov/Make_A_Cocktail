@@ -10,11 +10,12 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_light"
+            android:background="#767cea"
             android:orientation="horizontal"
             >
             <ImageView
@@ -51,8 +52,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/favorite_pic"
-                android:background="@android:color/holo_green_light"
+                android:src="@drawable/star1_pic"
+                android:background="#a7a3a7"
                 />
 
 
