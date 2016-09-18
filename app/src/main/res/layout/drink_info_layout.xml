@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#767cea"
+            android:background="@color/card_view"
             android:orientation="horizontal"
             >
             <ImageView
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/star1_pic"
-                android:background="#a7a3a7"
+                android:background="@color/favorite_button"
                 />
 
 
