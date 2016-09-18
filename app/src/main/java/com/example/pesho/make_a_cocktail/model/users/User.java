@@ -164,12 +164,15 @@ public class User {
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject o = jsonArray.getJSONObject(i);
                 Drink drink;
-                if (o.getString("strCategory").equals(DrinksManager.DrinksCategories.Shot)) {
+                if (o.getString("strCategory").equals("Shot")) {
                     drink = new Shot(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), o.getBoolean("isFavorite"));
                 } else if (o.getString("strAlcoholic").equals(DrinksManager.DrinksCategories.Alcoholic)) {
                     drink = new AlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), o.getBoolean("isFavorite"));
                 } else {
                     drink = new NonAlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), o.getBoolean("isFavorite"));
+                }
+                if (favorite.contains(drink)) {
+                    drink.setFavorite(true);
                 }
                 myDrinks.add(drink);
             }
