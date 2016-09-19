@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/darkBlue"
+    android:background="@drawable/loading_pic"
     tools:context="com.example.pesho.make_a_cocktail.RegisterActivity">
 
     <LinearLayout
@@ -23,6 +23,8 @@
             android:layout_weight="1"
             android:hint="@string/name"
             android:id="@+id/RPNameText"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/holo_red_light"
             android:gravity="end|bottom"
             />
 
@@ -34,6 +36,8 @@
             android:inputType="textPersonName"
             android:id="@+id/RPUserText"
             android:hint="@string/user_name"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/holo_red_light"
             android:gravity="end|bottom"
             />
 
@@ -44,6 +48,8 @@
             android:lines="1"
             android:hint="@string/password"
             android:id="@+id/RPPasswordText"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/holo_red_light"
             android:gravity="end|bottom"
             />
 
@@ -54,6 +60,8 @@
             android:layout_weight="1"
             android:hint="@string/repeat_password"
             android:id="@+id/RPRepeatPassword"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/holo_red_light"
             android:gravity="end|bottom"
             />
 
@@ -64,6 +72,8 @@
             android:lines="1"
             android:inputType="textPersonName"
             android:hint="@string/enter_email"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/holo_red_light"
             android:id="@+id/RPEmail"
             android:gravity="end|bottom"
             />
@@ -72,6 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_red_light"
             android:id="@+id/RPRegisterButton"
             android:text="@string/register" />
     </LinearLayout>

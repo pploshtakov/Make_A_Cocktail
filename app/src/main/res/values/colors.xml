@@ -8,4 +8,7 @@
     <color name="darkBlue">#FF49BFF5</color>
     <color name="lightBlue">#FFB0E6FF</color>
     <color name="black">#000000</color>
+    <color name="custom_blue">#5ab795</color>
+    <color name="card_view">#767cea</color>
+    <color name="favorite_button">#a7a3a7</color>
 </resources>
