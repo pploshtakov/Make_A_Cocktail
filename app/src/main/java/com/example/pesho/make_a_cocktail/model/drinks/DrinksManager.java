@@ -110,16 +110,19 @@ public class DrinksManager {
                         b = o.getBoolean("isFavorite");
                     }
                     drink = new Shot(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), b);
+                    drink.setPath(o.getString("imagePath"));
                 } else if (o.getString("strAlcoholic").equals(DrinksCategories.Alcoholic)) {
                     if (o.has("isFavorite")) {
                         b = o.getBoolean("isFavorite");
                     }
                     drink = new AlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), b);
+                    drink.setPath(o.getString("imagePath"));
                 } else {
                     if (o.has("isFavorite")) {
                         b = o.getBoolean("isFavorite");
                     }
                     drink = new NonAlcoholicCocktail(o.getInt("idDrink"),o.getString("strDrink"),o.getString("strInstructions"), R.drawable.margarita_pic, o.getString("strCategory"), o.getString("strAlcoholic"), o.getString("strGlass"),o.getString("strDrinkThumb"), b);
+                    drink.setPath(o.getString("imagePath"));
                 }
                 DrinksManager.addDrink(drink);
             }
@@ -161,6 +164,7 @@ public class DrinksManager {
                 o.put("strGlass", d.getStrGlass());
                 o.put("strDrinkThumb", d.getStrDrinkThumb());
                 o.put("isFavorite", d.isFavorite());
+                o.put("imagePath", d.getPath());
 
                 jsonDrinks.put(o);
             }

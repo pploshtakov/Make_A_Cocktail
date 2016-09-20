@@ -2,6 +2,7 @@ package com.example.pesho.make_a_cocktail.model.drinks;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -23,7 +24,15 @@ public abstract class Drink {
     private String strInstructions;
     private boolean isFavorite;
     private Bitmap bmp;
+    private String path;
 
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
 
     private TreeSet<Product> products;
 
@@ -39,7 +48,9 @@ public abstract class Drink {
         this.isFavorite = isFavorite;
         this.products = new TreeSet<Product>();
         DrinksManager.addDrink(this);
-
+        if (path != null) {
+            bmp = BitmapFactory.decodeFile(path);
+        }
     }
 
     public String getStrInstructions() {
