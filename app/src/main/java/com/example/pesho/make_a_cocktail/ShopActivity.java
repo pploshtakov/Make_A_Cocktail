@@ -102,11 +102,11 @@ public class ShopActivity extends AppCompatActivity
                     return;
                 } else if (tab.getText().toString().equals("Shopping list")) {
                     if (fragment instanceof IngredientsFragment)
-                        ((IngredientsFragment) fragment).refreshList(UsersManager.getShoppingList(loggedUser).getProducts(), "Shop list");
+                        ((IngredientsFragment) fragment).refreshList(UsersManager.getShoppingList(loggedUser).getProducts(), "Shopping list");
                     return;
                 } else if (tab.getText().toString().equals("Bar shelf")) {
                     if (fragment instanceof IngredientsFragment)
-                        ((IngredientsFragment) fragment).refreshList(UsersManager.getBarShelf(loggedUser).getProducts(), "Bar shelf");
+                        ((IngredientsFragment) fragment).refreshList(UsersManager.getBarShelf(loggedUser).getProducts(), "Bar Shelf");
                     return;
                 } else {
                     fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
