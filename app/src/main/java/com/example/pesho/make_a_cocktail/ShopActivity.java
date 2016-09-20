@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
@@ -81,31 +82,35 @@ public class ShopActivity extends AppCompatActivity
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment fragment;
-                switch (tab.getPosition()) {
-                    case 0:
-                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                        ((AllDrinksFragment)fragment).refreshList(DrinksManager.getList());
-                        break;
-                    case 1:
-                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                        ((AllDrinksFragment)fragment).refreshList(DrinksManager.getCocktailsList());
-                        Toast.makeText(ShopActivity.this, "Cocktails", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                        ((AllDrinksFragment)fragment).refreshList(DrinksManager.getShotsList());
-                        Toast.makeText(ShopActivity.this, "Shots", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                        ((AllDrinksFragment)fragment).refreshList(UsersManager.getFavoriteList(loggedUser));
-                        Toast.makeText(ShopActivity.this, "Favorite", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
-                        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                        ((AllDrinksFragment)fragment).refreshList(UsersManager.getMyDrinks(loggedUser));
-                        Toast.makeText(ShopActivity.this, "MyDrinks", Toast.LENGTH_SHORT).show();
-                        break;
+                if (tab.getText().toString().equals("Shop")) {
+                    return;
+                } else if (tab.getText().toString().equals("Shopping list")) {
+                    return;
+                } else if (tab.getText().toString().equals("Bar shelf")) {
+                    return;
+                } else {
+                    fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                    switch (tab.getText().toString()) {
+                        case "All":
+                            ((AllDrinksFragment) fragment).refreshList(DrinksManager.getList());
+                            break;
+                        case "Cocktails":
+                            ((AllDrinksFragment) fragment).refreshList(DrinksManager.getCocktailsList());
+                            Toast.makeText(ShopActivity.this, "Cocktails", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "Shots":
+                            ((AllDrinksFragment) fragment).refreshList(DrinksManager.getShotsList());
+                            Toast.makeText(ShopActivity.this, "Shots", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "Favorite":
+                            ((AllDrinksFragment) fragment).refreshList(UsersManager.getFavoriteList(loggedUser));
+                            Toast.makeText(ShopActivity.this, "Favorite", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "My drinks":
+                            ((AllDrinksFragment) fragment).refreshList(UsersManager.getMyDrinks(loggedUser));
+                            Toast.makeText(ShopActivity.this, "MyDrinks", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
             }
 
@@ -196,6 +201,13 @@ public class ShopActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             myDrawer.closeDrawers();
+            toolbar1.removeAllTabs();
+            toolbar1.addTab(toolbar1.newTab().setText("All"));
+            toolbar1.addTab(toolbar1.newTab().setText("Cocktails"));
+            toolbar1.addTab(toolbar1.newTab().setText("Shots"));
+            toolbar1.addTab(toolbar1.newTab().setText("Favorite"));
+            toolbar1.addTab(toolbar1.newTab().setText("My drinks"));
+            toolbar1.setTabMode(TabLayout.MODE_SCROLLABLE);
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
 //            setSupportActionBar(toolbar1);
@@ -207,6 +219,11 @@ public class ShopActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             myDrawer.closeDrawers();
+            toolbar1.removeAllTabs();
+            toolbar1.addTab(toolbar1.newTab().setText("Shop"));
+            toolbar1.addTab(toolbar1.newTab().setText("Shopping list"));
+            toolbar1.addTab(toolbar1.newTab().setText("Bar shelf"));
+            toolbar1.setTabMode(TabLayout.MODE_FIXED);
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar1 = (Toolbar) findViewById(R.id.myToolbar);
 //            setSupportActionBar(toolbar1);
