@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pesho.make_a_cocktail.model.products.Product;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
@@ -40,7 +41,7 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
 
     @Override
     public void onBindViewHolder(IngridientsAdapter.MyViewHolder holder, int position) {
-        Log.e("bar", Integer.toString(products.size()));
+
         final Product p = products.get(position);
         holder.image.setImageResource(p.getImage());
         holder.name.setText(p.getName());
@@ -51,7 +52,11 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    UsersManager.getShoppingList(loggedUser).addProduct(p);
+                    if(!(UsersManager.getShoppingList(loggedUser).getProducts().contains(p))) {
+                        UsersManager.getShoppingList(loggedUser).addProduct(p);
+                        Toast.makeText(activity, "Added in shopping List", Toast.LENGTH_SHORT).show();
+                    }else
+                        Toast.makeText(activity, "Already added", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -62,6 +67,9 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
                 @Override
                 public void onClick(View view) {
                     UsersManager.getBarShelf(loggedUser).getProducts().remove(p);
+                    IngridientsAdapter.this.notifyDataSetChanged();
+                    Toast.makeText(activity, "Removed", Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
@@ -70,7 +78,11 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    UsersManager.getShoppingList(loggedUser).addProduct(p);
+                    if(!(UsersManager.getShoppingList(loggedUser).getProducts().contains(p))) {
+                        UsersManager.getShoppingList(loggedUser).addProduct(p);
+                        Toast.makeText(activity, "Added in shopping List", Toast.LENGTH_SHORT).show();
+                    }else
+                        Toast.makeText(activity, "Already added", Toast.LENGTH_SHORT).show();
                 }
             });
         }else if(tag.equals("Shopping list")){
@@ -78,8 +90,14 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    UsersManager.getShoppingList(loggedUser).removeProduct(p);
-                    UsersManager.getBarShelf(loggedUser).addProduct(p);
+                    if(!(UsersManager.getBarShelf(loggedUser).getProducts().contains(p))) {
+                        UsersManager.getShoppingList(loggedUser).removeProduct(p);
+                        UsersManager.getBarShelf(loggedUser).addProduct(p);
+                        IngridientsAdapter.this.notifyDataSetChanged();
+                        Toast.makeText(activity, "Added in bar shelf", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(activity, "Already added", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
