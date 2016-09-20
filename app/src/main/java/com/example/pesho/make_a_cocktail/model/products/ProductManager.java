@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -18,7 +19,7 @@ import java.util.HashMap;
  */
 public class ProductManager {
     private static ProductManager ourInstance;
-    private HashMap<String, Product> products;
+    private ArrayList<Product> products;
 
     public static ProductManager getInstance(Activity a) {
         if(ourInstance == null){
@@ -35,6 +36,7 @@ public class ProductManager {
         for(int i = 0; i < jsonProducts.length();i++){
             JSONObject obj = jsonProducts.getJSONObject(i);
             Product p = new Product(obj.getString("name"),obj.getInt("image"),obj.getBoolean("isInShop"));
+            products.add(p);
         }
 
         }catch (JSONException e) {
@@ -43,20 +45,6 @@ public class ProductManager {
 
     }
 
-//    public static HashMap<String,Product> getProducts(){
-//        HashMap<String,Product> products1 = new HashMap<>();
-//        Product tequila = new Product("Tequila", R.drawable.tequila ,true);
-//        Product whiskey = new Product("Whiskey",R.drawable.whiskey ,true);
-//        Product rum = new Product("Rum",R.drawable.rum ,true);
-//        Product grenadine = new Product("Grenadine",R.drawable.grenadine ,true);
-//
-//        products1.put(tequila.getName(),tequila);
-//        products1.put(whiskey.getName(),whiskey);
-//        products1.put(rum.getName(),rum);
-//        products1.put(grenadine.getName(),grenadine);
-//        return products1;
-//    }
-
 
     private void fillCollection(){
         Product tequila = new Product("Tequila", R.drawable.tequila ,true);
@@ -64,10 +52,10 @@ public class ProductManager {
         Product rum = new Product("Rum",R.drawable.rum ,true);
         Product grenadine = new Product("Grenadine",R.drawable.grenadine ,true);
 
-        products.put(tequila.getName(),tequila);
-        products.put(whiskey.getName(),whiskey);
-        products.put(rum.getName(),rum);
-        products.put(grenadine.getName(),grenadine);
+        products.add(tequila);
+        products.add(whiskey);
+        products.add(rum);
+        products.add(grenadine);
 
     }
 
@@ -80,7 +68,8 @@ public class ProductManager {
 
         JSONArray jsonProducts = new JSONArray();
         try {
-            for (Product p : products.values()) {
+            for (int i = 0; i < products.size();i++) {
+                Product p = products.get(i);
                 JSONObject jobj = new JSONObject();
                 jobj.put("name", p.getName());
                 jobj.put("image", p.getImage());

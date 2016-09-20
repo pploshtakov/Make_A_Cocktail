@@ -7,6 +7,9 @@ import android.util.Log;
 
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinkJSON;
+import com.example.pesho.make_a_cocktail.model.products.Product;
+import com.example.pesho.make_a_cocktail.model.storage.BarShelf;
+import com.example.pesho.make_a_cocktail.model.storage.ShopList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -190,6 +193,17 @@ public class UsersManager {
         User u = users.get(loggedUser);
         return u.getMyDrinksList();
     }
+
+    public static ShopList getShoppingList(String loggedUser){
+        User u = users.get(loggedUser);
+        return u.getMyShopList();
+    }
+
+    public static BarShelf getBarShelf(String loggedUser){
+        User u = users.get(loggedUser);
+        return u.getMyShelf();
+    }
+
 
     public static void addMyDrink(Drink drink, String loggedUser) {
         User u = users.get(loggedUser);

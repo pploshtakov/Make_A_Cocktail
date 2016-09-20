@@ -20,6 +20,7 @@ import com.example.pesho.make_a_cocktail.model.drinks.NonAlcoholicCocktail;
 import com.example.pesho.make_a_cocktail.model.drinks.Shot;
 import com.example.pesho.make_a_cocktail.model.exceptions.NoNameException;
 import com.example.pesho.make_a_cocktail.model.storage.BarShelf;
+import com.example.pesho.make_a_cocktail.model.storage.Shop;
 import com.example.pesho.make_a_cocktail.model.storage.ShopList;
 
 import org.json.JSONArray;
@@ -74,6 +75,14 @@ public class User {
     public void setPass(String pass) {
         //TODO validate password
         this.pass = pass;
+    }
+
+    public BarShelf getMyShelf() {
+        return myShelf;
+    }
+
+    public ShopList getMyShopList() {
+        return myShopList;
     }
 
     public String getName() {

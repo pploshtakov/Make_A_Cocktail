@@ -26,6 +26,7 @@ public class IngredientsFragment extends Fragment {
     private  Activity activity;
     private  IngridientsAdapter adapter;
     private ArrayList<Product> products;
+    String loggedUser;
 
     public IngredientsFragment() {
         // Required empty public constructor
@@ -37,6 +38,7 @@ public class IngredientsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ingredients, container, false);
         ingridientsRV = (RecyclerView) view.findViewById(R.id.ingridientsRecyclerView);
         ingridientsRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        loggedUser = ((Communicator)activity).getLoggedUserName();
 
        // products = ProductManager.getProducts();
         products = new ArrayList<>();
@@ -49,12 +51,15 @@ public class IngredientsFragment extends Fragment {
         products.add(whiskey);
         products.add(rum);
         products.add(grenadine);
-        adapter = new IngridientsAdapter(products,activity);
+        adapter = new IngridientsAdapter(products,activity,loggedUser);
         ingridientsRV.setAdapter(adapter);
         // Inflate the layout for this fragment
         return view;
     }
 
+    interface Communicator {
+        String getLoggedUserName();
+    }
 
     @Override
     public void onAttach(Context context) {

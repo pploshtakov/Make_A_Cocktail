@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pesho.make_a_cocktail.model.products.Product;
+import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +23,12 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
 
     private ArrayList<Product> products;
     Activity activity;
+    String loggedUser;
 
-    public IngridientsAdapter(ArrayList<Product> products,Activity activity) {
+    public IngridientsAdapter(ArrayList<Product> products,Activity activity,String loggedUser) {
         this.products = products;
         this.activity = activity;
+        this.loggedUser = loggedUser;
     }
 
     @Override
@@ -35,9 +39,36 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
 
     @Override
     public void onBindViewHolder(IngridientsAdapter.MyViewHolder holder, int position) {
-        Product p = products.get(position);
+        final Product p = products.get(position);
         holder.image.setImageResource(p.getImage());
         holder.name.setText(p.getName());
+
+        if(/*shop fragment*/) {
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UsersManager.getShoppingList(loggedUser).addProduct(p);
+                }
+            });
+        }else if(/*shopping list fragment*/){
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UsersManager.getBarShelf(loggedUser).addProduct(p);
+                }
+            });
+        }else{
+            //remove product from bar shelf and set button to X
+            holder.button.setImageResource(R.drawable.cancel);
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UsersManager.getBarShelf(loggedUser).getProducts().remove(p);
+                }
+            });
+
+        }
+
 
         //TODO: setOnClickListener for cart button to add in shopping list
     }
@@ -51,11 +82,13 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
 
         ImageView image;
         TextView name;
+        ImageButton button;
 
         public MyViewHolder(View row) {
             super(row);
             image = (ImageView) row.findViewById(R.id.ingridientImageView);
             name = (TextView) row.findViewById(R.id.ingridientNameTV);
+            button = (ImageButton) row.findViewById(R.id.shoppingCartButton);
         }
     }
 
