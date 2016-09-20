@@ -47,6 +47,7 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
 
         //edit button
         if(tag == null ){
+            holder.button.setImageResource(R.mipmap.shopping_cart);
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -54,7 +55,7 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
                 }
             });
         }
-        else if (tag == "Bar Shelf"){
+        else if (tag.equals("Bar Shelf")){
             //remove product from bar shelf and set button to X
             holder.button.setImageResource(R.drawable.cancel);
             holder.button.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +65,8 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
                 }
             });
         }
-        else if(tag.equals("shop")) {
+        else if(tag.equals("Shop")) {
+            holder.button.setImageResource(R.mipmap.shopping_cart);
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -72,9 +74,11 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
                 }
             });
         }else if(tag.equals("Shopping list")){
+            holder.button.setImageResource(R.mipmap.shopping_cart);
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    UsersManager.getShoppingList(loggedUser).removeProduct(p);
                     UsersManager.getBarShelf(loggedUser).addProduct(p);
                 }
             });
