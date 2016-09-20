@@ -34,7 +34,6 @@ public class AddNewDrinkActivity extends AppCompatActivity {
     Button addDrinkButton;
     String loggedUser;
     Bitmap bmp;
-    String picturePath;
 
 
     @Override
@@ -126,7 +125,6 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                     drink = new Shot(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Alcoholic", glass, "null", false  );
                     if (bmp != null) {
                         drink.setBmp(bmp);
-                        drink.setPath(picturePath);
                     }
                     setResult(RESULT_OK);
                     UsersManager.addMyDrink(drink, loggedUser);
@@ -147,7 +145,7 @@ public class AddNewDrinkActivity extends AppCompatActivity {
             Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
+            String picturePath = cursor.getString(columnIndex);
             cursor.close();
             bmp = BitmapFactory.decodeFile(picturePath);
         }
