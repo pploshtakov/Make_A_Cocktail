@@ -1,8 +1,12 @@
 package com.example.pesho.make_a_cocktail;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,6 +29,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
@@ -40,6 +45,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +70,10 @@ public class ShopActivity extends AppCompatActivity
         this.loggedUser = intent.getStringExtra("loggedUser");
         UsersManager.saveLastLoggedUser(loggedUser);
         DrinksManager.getInstance(this, loggedUser);
+        ArrayList<Drink> drs = DrinksManager.getList();
+        for (Drink d: drs) {
+            new ImageFromUrlTask(ShopActivity.this).execute(d);
+        }
         UsersManager.loadUserData(loggedUser);
 
         //set fragment
@@ -326,4 +336,40 @@ public class ShopActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    public static class ImageFromUrlTask extends AsyncTask<Drink, Void, Bitmap> {
+        private Activity activity;
+        ImageFromUrlTask(Activity activity) {
+            this.activity = activity;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if (activity instanceof DrinkInfoActivity) {
+                ImageView iv = (ImageView) activity.findViewById(R.id.info_image);
+                iv.setImageBitmap(bitmap);
+            }
+        }
+
+        @Override
+        protected Bitmap doInBackground(Drink... params) {
+            URL url = null;
+            try {
+                url = new URL(params[0].getStrDrinkThumb());
+            } catch (MalformedURLException e) {
+                return null;
+            }
+            Bitmap bmp = null;
+            try {
+                bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            } catch (IOException e) {
+                return null;
+            }
+            params[0].setBmp(bmp);
+            return bmp;
+        }
+    }
+    //check connection
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
+    }
 }

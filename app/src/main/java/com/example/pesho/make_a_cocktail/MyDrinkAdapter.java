@@ -43,7 +43,11 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Drink drink = drinks.get(position);
-        holder.drinkImageView.setImageResource(drink.getImage());
+        if (drink.getBmp() != null) {
+            holder.drinkImageView.setImageBitmap(drink.getBmp());
+        } else {
+            holder.drinkImageView.setImageResource(drink.getImage());
+        }
         holder.drinkTitleTextView.setText(drink.getName());
         holder.drinkCategoryTV.setText(drink.getStrCategory());
         if (drink.isFavorite()) {
