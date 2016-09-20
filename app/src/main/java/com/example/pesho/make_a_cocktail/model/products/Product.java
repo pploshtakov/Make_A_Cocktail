@@ -3,7 +3,7 @@ package com.example.pesho.make_a_cocktail.model.products;
 /**
  * Created by Pesho on 8/28/2016.
  */
-public abstract class Product {
+public  class Product {
     private String name;
     private int image;
     private int quanttity;
@@ -19,5 +19,11 @@ public abstract class Product {
 
     public boolean isInShoppingList() {
         return isInShoppingList;
+    }
+
+    public Product(String name, int image, boolean isInShoppingList) {
+        this.name = name;
+        this.image = image;
+        this.isInShoppingList = isInShoppingList;
     }
 }

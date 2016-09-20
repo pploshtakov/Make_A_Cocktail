@@ -2,6 +2,7 @@ package com.example.pesho.make_a_cocktail;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.pesho.make_a_cocktail.model.products.Product;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,10 +18,11 @@ import java.util.List;
  */
 public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.MyViewHolder>{
 
-    private List<Product> products;
+    private HashMap<String,Product> products;
     Activity activity;
 
-    public IngridientsAdapter(List<Product> products,Activity activity) {
+    public IngridientsAdapter(HashMap<String,Product> products,Activity activity) {
+        Log.e("Collection", products.values().toString());
         this.products = products;
         this.activity = activity;
     }
@@ -52,7 +55,7 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
         public MyViewHolder(View row) {
             super(row);
             image = (ImageView) row.findViewById(R.id.ingridientImageView);
-            name = (TextView) name.findViewById(R.id.ingridientNameTV);
+            name = (TextView) row.findViewById(R.id.ingridientNameTV);
         }
     }
 
