@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.pesho.make_a_cocktail.model.products.Product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,11 +19,10 @@ import java.util.List;
  */
 public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.MyViewHolder>{
 
-    private HashMap<String,Product> products;
+    private ArrayList<Product> products;
     Activity activity;
 
-    public IngridientsAdapter(HashMap<String,Product> products,Activity activity) {
-        Log.e("Collection", products.values().toString());
+    public IngridientsAdapter(ArrayList<Product> products,Activity activity) {
         this.products = products;
         this.activity = activity;
     }
