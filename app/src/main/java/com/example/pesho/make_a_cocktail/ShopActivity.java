@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
+import com.example.pesho.make_a_cocktail.model.products.Product;
+import com.example.pesho.make_a_cocktail.model.products.ProductManager;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 import java.io.BufferedReader;
@@ -81,12 +83,18 @@ public class ShopActivity extends AppCompatActivity
         toolbar1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Fragment fragment;
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                 if (tab.getText().toString().equals("Shop")) {
+                    if (fragment instanceof IngredientsFragment)
+                        ((IngredientsFragment) fragment).refreshList(new ArrayList<Product>(), "Shop");
                     return;
                 } else if (tab.getText().toString().equals("Shopping list")) {
+                    if (fragment instanceof IngredientsFragment)
+                        ((IngredientsFragment) fragment).refreshList(new ArrayList<Product>(), "Shop list");
                     return;
                 } else if (tab.getText().toString().equals("Bar shelf")) {
+                    if (fragment instanceof IngredientsFragment)
+                        ((IngredientsFragment) fragment).refreshList(new ArrayList<Product>(), "Bar shelf");
                     return;
                 } else {
                     fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
