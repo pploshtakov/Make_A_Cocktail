@@ -15,6 +15,10 @@ public abstract class Storage {
       return products.add(product);
     }
 
+    public Storage(){
+        products = new ArrayList<>();
+    }
+
     public boolean removeProduct (Product product) {
         return products.remove(product);
     }

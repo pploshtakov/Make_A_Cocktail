@@ -89,18 +89,30 @@ public class ShopActivity extends AppCompatActivity
         toolbar1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                //create random ingridients arraylist
+                ArrayList<Product> products = new ArrayList<>();
+                Product tequila = new Product("Tequila", R.drawable.tequila ,true);
+                Product whiskey = new Product("Whiskey",R.drawable.whiskey ,true);
+                Product rum = new Product("Rum",R.drawable.rum ,true);
+                Product grenadine = new Product("Grenadine",R.drawable.grenadine ,true);
+
+                products.add(tequila);
+                products.add(whiskey);
+                products.add(rum);
+                products.add(grenadine);
+
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                 if (tab.getText().toString().equals("Shop")) {
                     if (fragment instanceof IngredientsFragment)
-                        ((IngredientsFragment) fragment).refreshList(new ArrayList<Product>(), "Shop");
+                        ((IngredientsFragment) fragment).refreshList(products, "Shop");
                     return;
                 } else if (tab.getText().toString().equals("Shopping list")) {
                     if (fragment instanceof IngredientsFragment)
-                        ((IngredientsFragment) fragment).refreshList(new ArrayList<Product>(), "Shop list");
+                        ((IngredientsFragment) fragment).refreshList(UsersManager.getShoppingList(loggedUser).getProducts(), "Shop list");
                     return;
                 } else if (tab.getText().toString().equals("Bar shelf")) {
                     if (fragment instanceof IngredientsFragment)
-                        ((IngredientsFragment) fragment).refreshList(new ArrayList<Product>(), "Bar shelf");
+                        ((IngredientsFragment) fragment).refreshList(UsersManager.getBarShelf(loggedUser).getProducts(), "Bar shelf");
                     return;
                 } else {
                     fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
