@@ -30,8 +30,6 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyViewHo
         this.loggedUser = loggedUser;
         if (drinks != null) {
             this.drinks = drinks;
-        } else {
-            drinks = new ArrayList<>();
         }
     }
     @Override

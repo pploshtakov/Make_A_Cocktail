@@ -85,7 +85,7 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                 }
                 if (category.equals("Alcoholic cocktail")) {
                     int id = DrinksManager.generateDrinkId();
-                    drink = new AlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Alcoholic", glass, "", false  );
+                    drink = new AlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Alcoholic", glass, "null", false  );
                     setResult(RESULT_OK);
                     UsersManager.addMyDrink(drink, loggedUser);
                     DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
@@ -93,7 +93,7 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                     return;
                 } else if (category.equals("NonAlcoholic cocktail")) {
                     int id = DrinksManager.generateDrinkId();
-                    drink = new NonAlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "NonAlcoholic", glass, "", false  );
+                    drink = new NonAlcoholicCocktail(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "NonAlcoholic", glass, "null", false  );
                     setResult(RESULT_OK);
                     UsersManager.addMyDrink(drink, loggedUser);
                     DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
@@ -101,7 +101,7 @@ public class AddNewDrinkActivity extends AppCompatActivity {
                     return;
                 } else if (category.equals("Shot")) {
                     int id = DrinksManager.generateDrinkId();
-                    drink = new Shot(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Alcoholic", glass, "", false  );
+                    drink = new Shot(id, drinkNameET.getText().toString(), instrET.getText().toString(), R.drawable.bloody_mary_pic, category, "Alcoholic", glass, "null", false  );
                     setResult(RESULT_OK);
                     UsersManager.addMyDrink(drink, loggedUser);
                     DrinksManager.overwriteSharedPrefsDrinks(loggedUser);
