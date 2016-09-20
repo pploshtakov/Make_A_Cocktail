@@ -7,27 +7,23 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.pesho.make_a_cocktail.R;
 import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.products.Product;
-import com.example.pesho.make_a_cocktail.model.products.ProductManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class IngredientsFragment extends Fragment {
 
-    private RecyclerView ingridientsRV;
+    private RecyclerView ingredientsRV;
     private  Activity activity;
-    private  IngridientsAdapter adapter;
+    private IngredientsAdapter adapter;
     private ArrayList<Product> products;
     String loggedUser;
+    private ArrayList<Product> currentProducts;
 
     public IngredientsFragment() {
         // Required empty public constructor
@@ -37,8 +33,8 @@ public class IngredientsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ingredients, container, false);
-        ingridientsRV = (RecyclerView) view.findViewById(R.id.ingridientsRecyclerView);
-        ingridientsRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        ingredientsRV = (RecyclerView) view.findViewById(R.id.ingridientsRecyclerView);
+        ingredientsRV.setLayoutManager(new LinearLayoutManager(getActivity()));
         loggedUser = ((Communicator)activity).getLoggedUserName();
 
        // products = ProductManager.getProducts();
@@ -52,10 +48,25 @@ public class IngredientsFragment extends Fragment {
         products.add(whiskey);
         products.add(rum);
         products.add(grenadine);
-        adapter = new IngridientsAdapter(products,activity,loggedUser);
-        ingridientsRV.setAdapter(adapter);
+        currentProducts = products;
+        adapter = new IngredientsAdapter(products,activity,loggedUser);
+        ingredientsRV.setAdapter(adapter);
         // Inflate the layout for this fragment
         return view;
+    }
+
+    public void search(String newText) {
+        ArrayList<Product> products = new ArrayList<>();
+        newText = newText.toLowerCase();
+        for (Product p: currentProducts) {
+            String name = p.getName().toLowerCase();
+            if (name.contains(newText)) {
+                products.add(p);
+            }
+        }
+        adapter = (IngredientsAdapter) ingredientsRV.getAdapter();
+        adapter.setNewList(products);
+        adapter.notifyDataSetChanged();
     }
 
     interface Communicator {
@@ -63,8 +74,9 @@ public class IngredientsFragment extends Fragment {
     }
 
     public void refreshList(ArrayList<Product> products,String tag) {
-        adapter = (IngridientsAdapter) ingridientsRV.getAdapter();
+        adapter = (IngredientsAdapter)ingredientsRV.getAdapter();
         adapter.setNewList(products);
+        currentProducts = products;
         adapter.setTag(tag);
         this.products = products;
         adapter.notifyDataSetChanged();

@@ -52,6 +52,7 @@ public class DrinksManager {
         return drinks.get(idDrink);
     }
 
+
     public static Drink getRandomDrink() {
         List<Integer> idS = new ArrayList<>();
         idS.addAll(drinks.keySet());
@@ -80,7 +81,7 @@ public class DrinksManager {
     }
 
 
-    public enum DrinksCategories {Alcoholic, NonAlcoholic, Shot};
+    public enum DrinksCategories {Alcoholic , NonAlcoholic, Shot};
 
 
     public static DrinksManager getInstance(Activity act, String loggedUserName) {
@@ -92,13 +93,6 @@ public class DrinksManager {
     }
 
     private DrinksManager(Activity activity, String loggedUserName) {
-//        try {
-//            JsonReader json = new JsonReader(new InputStreamReader(new FileInputStream("drinkJSON")));
-//        } catch (FileNotFoundException e) {
-//            Log.e("Test", "test");
-//            e.printStackTrace();
-//            return;
-//        }
         String json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("drinksForUser" + loggedUserName, "Doesn't have drinks!");
         if (json.equals("Doesn't have drinks!")) {
             UsersManager.addUsersDrinks(loggedUserName);
@@ -135,6 +129,7 @@ public class DrinksManager {
 
 
     }
+
     public static ArrayList<Drink> getList() {
         ArrayList<Drink> drinks1 = new ArrayList<>();
         drinks1.addAll(drinks.values());

@@ -18,7 +18,6 @@ import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 import com.example.pesho.make_a_cocktail.model.drinks.NonAlcoholicCocktail;
 import com.example.pesho.make_a_cocktail.model.drinks.Shot;
-import com.example.pesho.make_a_cocktail.model.exceptions.NoNameException;
 import com.example.pesho.make_a_cocktail.model.storage.BarShelf;
 import com.example.pesho.make_a_cocktail.model.storage.Shop;
 import com.example.pesho.make_a_cocktail.model.storage.ShopList;
@@ -64,11 +63,9 @@ public class User {
         });
     }
 
-    public void setUserName(String userName) throws NoNameException {
+    public void setUserName(String userName) {
         if (userName != null && !userName.isEmpty()) {
             this.userName = userName;
-        } else {
-            throw new NoNameException();
         }
     }
 
@@ -167,7 +164,6 @@ public class User {
             Log.e("JSON", e.getMessage());
         }
         json = activity.getSharedPreferences("Make_A_Cocktail", Context.MODE_PRIVATE).getString("myDrinkForUser" + this.userName, "Doesn't have drinks!");
-        Log.e("myDrinks", json);
         try {
             JSONArray jsonArray = new JSONArray(json);
             for(int i = 0; i < jsonArray.length(); i++) {
@@ -206,9 +202,9 @@ public class User {
         SharedPreferences.Editor editor = prefs.edit();
         String key = "myDrinkForUser" + this.userName;
         String value = "";
-        JSONArray jsonUsers = new JSONArray();
+        JSONArray myDr = new JSONArray();
         try {
-            for (Drink d : myDrinks) {
+            for (Drink d : this.myDrinks) {
                 JSONObject o = new JSONObject();
                 o.put("idDrink", d.getIdDrink());
                 o.put("strDrink", d.getName());
@@ -218,9 +214,9 @@ public class User {
                 o.put("strGlass", d.getStrGlass());
                 o.put("strDrinkThumb", d.getStrDrinkThumb());
                 o.put("isFavorite", d.isFavorite());
-                jsonUsers.put(o);
+                myDr.put(o);
             }
-            value = jsonUsers.toString();
+            value = myDr.toString();
         } catch (JSONException e) {
             Log.e("JSON", e.getMessage());
         }

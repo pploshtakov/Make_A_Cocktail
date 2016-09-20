@@ -2,7 +2,6 @@ package com.example.pesho.make_a_cocktail;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -14,33 +13,31 @@ import com.example.pesho.make_a_cocktail.model.products.Product;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by Simeon Angelov on 19.9.2016 г..
  */
-public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.MyViewHolder>{
+public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>{
 
     private ArrayList<Product> products;
     Activity activity;
     String loggedUser;
     String tag;
 
-    public IngridientsAdapter(ArrayList<Product> products,Activity activity,String loggedUser) {
+    public IngredientsAdapter(ArrayList<Product> products, Activity activity, String loggedUser) {
         this.products = products;
         this.activity = activity;
         this.loggedUser = loggedUser;
     }
 
     @Override
-    public IngridientsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public IngredientsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View row = activity.getLayoutInflater().inflate(R.layout.adapter_product,parent,false);
         return new MyViewHolder(row);
     }
 
     @Override
-    public void onBindViewHolder(IngridientsAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(IngredientsAdapter.MyViewHolder holder, int position) {
 
         final Product p = products.get(position);
         holder.image.setImageResource(p.getImage());
@@ -67,7 +64,7 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
                 @Override
                 public void onClick(View view) {
                     UsersManager.getBarShelf(loggedUser).getProducts().remove(p);
-                    IngridientsAdapter.this.notifyDataSetChanged();
+                    IngredientsAdapter.this.notifyDataSetChanged();
                     Toast.makeText(activity, "Removed", Toast.LENGTH_SHORT).show();
 
                 }
@@ -93,7 +90,7 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
                     if(!(UsersManager.getBarShelf(loggedUser).getProducts().contains(p))) {
                         UsersManager.getShoppingList(loggedUser).removeProduct(p);
                         UsersManager.getBarShelf(loggedUser).addProduct(p);
-                        IngridientsAdapter.this.notifyDataSetChanged();
+                        IngredientsAdapter.this.notifyDataSetChanged();
                         Toast.makeText(activity, "Added in bar shelf", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(activity, "Already added", Toast.LENGTH_SHORT).show();

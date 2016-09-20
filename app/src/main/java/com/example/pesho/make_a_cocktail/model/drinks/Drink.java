@@ -6,8 +6,7 @@ import android.graphics.Bitmap;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import com.example.pesho.make_a_cocktail.model.exceptions.NoNameException;
-import com.example.pesho.make_a_cocktail.model.exceptions.NoRecipeException;
+
 import com.example.pesho.make_a_cocktail.model.products.Product;
 
 /**
@@ -17,7 +16,6 @@ public abstract class Drink {
     private int idDrink;
     private String name;
     private int image;
-    private String imagePath;
     private String strCategory;
     private String strAlcoholic;
     private String strGlass;
@@ -28,11 +26,6 @@ public abstract class Drink {
 
 
     private TreeSet<Product> products;
-
-    public Drink(String name) throws NoNameException {
-        this.setName(name);
-        this.products = new TreeSet<Product>();
-    }
 
     public Drink(int idDrink, String name, String instructions, int image, String strCategory, String strAlcoholic, String strGlass, String strDrinkThumb, boolean isFavorite)  {
         this.idDrink = idDrink;
@@ -53,19 +46,15 @@ public abstract class Drink {
         return strInstructions;
     }
 
-    public void setName(String name) throws NoNameException {
+    public void setName(String name) {
         if (name != null && !name.isEmpty()) {
             this.name = name;
-        } else {
-            throw new NoNameException();
         }
     }
 
-    public void setStrInstructions(String strInstructions) throws NoRecipeException {
+    public void setStrInstructions(String strInstructions) {
         if (name != null && !name.isEmpty()) {
             this.strInstructions = strInstructions;
-        } else {
-            throw new NoRecipeException();
         }
     }
 
@@ -123,7 +112,4 @@ public abstract class Drink {
         this.bmp = bmp;
     }
 
-    public void setImagePath(String path) {
-        this.imagePath = path;
-    }
 }

@@ -89,7 +89,7 @@ public class ShopActivity extends AppCompatActivity
         toolbar1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                //create random ingridients arraylist
+                //create random ingredients arraylist
                 ArrayList<Product> products = new ArrayList<>();
                 Product tequila = new Product("Tequila", R.drawable.tequila ,true);
                 Product whiskey = new Product("Whiskey",R.drawable.whiskey ,true);
@@ -197,7 +197,11 @@ public class ShopActivity extends AppCompatActivity
             @Override
             public boolean onQueryTextChange(String newText) {
                 fr = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                ((AllDrinksFragment)fr).search(newText);
+                if (fr instanceof AllDrinksFragment) {
+                    ((AllDrinksFragment) fr).search(newText);
+                } else {
+                    ((IngredientsFragment)fr).search(newText);
+                }
                 return true;
             }
         });
