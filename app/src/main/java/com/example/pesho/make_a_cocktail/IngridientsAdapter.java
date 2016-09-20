@@ -40,12 +40,21 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
 
     @Override
     public void onBindViewHolder(IngridientsAdapter.MyViewHolder holder, int position) {
+        Log.e("bar", Integer.toString(products.size()));
         final Product p = products.get(position);
         holder.image.setImageResource(p.getImage());
         holder.name.setText(p.getName());
 
         //edit button
-        if (tag == null){
+        if(tag == null ){
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UsersManager.getShoppingList(loggedUser).addProduct(p);
+                }
+            });
+        }
+        else if (tag == "Bar Shelf"){
             //remove product from bar shelf and set button to X
             holder.button.setImageResource(R.drawable.cancel);
             holder.button.setOnClickListener(new View.OnClickListener() {
