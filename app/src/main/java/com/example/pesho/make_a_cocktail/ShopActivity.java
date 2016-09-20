@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,10 @@ import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.drinks.DrinksManager;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +50,6 @@ public class ShopActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
-
         UsersManager.getInstance(this);
         Intent intent = getIntent();
         this.loggedUser = intent.getStringExtra("loggedUser");
@@ -269,8 +273,5 @@ public class ShopActivity extends AppCompatActivity
 //        Log.e("FavoriteOnDestroy", "????????????");
         super.onDestroy();
     }
-
-
-
 
 }
