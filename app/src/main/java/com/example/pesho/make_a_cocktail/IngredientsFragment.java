@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pesho.make_a_cocktail.R;
+import com.example.pesho.make_a_cocktail.model.drinks.Drink;
 import com.example.pesho.make_a_cocktail.model.products.Product;
 import com.example.pesho.make_a_cocktail.model.products.ProductManager;
 
@@ -59,6 +60,14 @@ public class IngredientsFragment extends Fragment {
 
     interface Communicator {
         String getLoggedUserName();
+    }
+
+    public void refreshList(ArrayList<Product> products,String tag) {
+        adapter = (IngridientsAdapter) ingridientsRV.getAdapter();
+        adapter.setNewList(products);
+        adapter.setTag(tag);
+        this.products = products;
+        adapter.notifyDataSetChanged();
     }
 
     @Override

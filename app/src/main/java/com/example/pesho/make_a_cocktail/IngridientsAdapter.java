@@ -24,6 +24,7 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
     private ArrayList<Product> products;
     Activity activity;
     String loggedUser;
+    String tag;
 
     public IngridientsAdapter(ArrayList<Product> products,Activity activity,String loggedUser) {
         this.products = products;
@@ -43,14 +44,16 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
         holder.image.setImageResource(p.getImage());
         holder.name.setText(p.getName());
 
-        if(/*shop fragment*/) {
+        //edit button
+
+        if(tag.equals("shop")) {
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     UsersManager.getShoppingList(loggedUser).addProduct(p);
                 }
             });
-        }else if(/*shopping list fragment*/){
+        }else if(tag.equals("Shopping list")){
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -68,14 +71,20 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
             });
 
         }
-
-
-        //TODO: setOnClickListener for cart button to add in shopping list
     }
 
     @Override
     public int getItemCount() {
         return products.size();
+    }
+
+    public void setNewList(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
