@@ -45,8 +45,17 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
         holder.name.setText(p.getName());
 
         //edit button
-
-        if(tag.equals("shop")) {
+        if (tag == null){
+            //remove product from bar shelf and set button to X
+            holder.button.setImageResource(R.drawable.cancel);
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UsersManager.getBarShelf(loggedUser).getProducts().remove(p);
+                }
+            });
+        }
+        else if(tag.equals("shop")) {
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -60,16 +69,6 @@ public class IngridientsAdapter extends RecyclerView.Adapter<IngridientsAdapter.
                     UsersManager.getBarShelf(loggedUser).addProduct(p);
                 }
             });
-        }else{
-            //remove product from bar shelf and set button to X
-            holder.button.setImageResource(R.drawable.cancel);
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    UsersManager.getBarShelf(loggedUser).getProducts().remove(p);
-                }
-            });
-
         }
     }
 

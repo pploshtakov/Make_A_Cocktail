@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener, AllDrinksFragment.Communicator {
+        implements NavigationView.OnNavigationItemSelectedListener,IngredientsFragment.OnFragmentInteractionListener, AllDrinksFragment.Communicator, IngredientsFragment.Communicator {
     NavigationView navigationView;
     String loggedUser;
     Toolbar toolbar;
@@ -92,22 +92,27 @@ public class ShopActivity extends AppCompatActivity
                     fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                     switch (tab.getText().toString()) {
                         case "All":
+                            if (fragment instanceof AllDrinksFragment)
                             ((AllDrinksFragment) fragment).refreshList(DrinksManager.getList());
                             break;
                         case "Cocktails":
-                            ((AllDrinksFragment) fragment).refreshList(DrinksManager.getCocktailsList());
+                            if (fragment instanceof AllDrinksFragment)
+                                ((AllDrinksFragment) fragment).refreshList(DrinksManager.getCocktailsList());
                             Toast.makeText(ShopActivity.this, "Cocktails", Toast.LENGTH_SHORT).show();
                             break;
                         case "Shots":
-                            ((AllDrinksFragment) fragment).refreshList(DrinksManager.getShotsList());
+                            if (fragment instanceof AllDrinksFragment)
+                                ((AllDrinksFragment) fragment).refreshList(DrinksManager.getShotsList());
                             Toast.makeText(ShopActivity.this, "Shots", Toast.LENGTH_SHORT).show();
                             break;
                         case "Favorite":
-                            ((AllDrinksFragment) fragment).refreshList(UsersManager.getFavoriteList(loggedUser));
+                            if (fragment instanceof AllDrinksFragment)
+                                ((AllDrinksFragment) fragment).refreshList(UsersManager.getFavoriteList(loggedUser));
                             Toast.makeText(ShopActivity.this, "Favorite", Toast.LENGTH_SHORT).show();
                             break;
                         case "My drinks":
-                            ((AllDrinksFragment) fragment).refreshList(UsersManager.getMyDrinks(loggedUser));
+                            if (fragment instanceof AllDrinksFragment)
+                                ((AllDrinksFragment) fragment).refreshList(UsersManager.getMyDrinks(loggedUser));
                             Toast.makeText(ShopActivity.this, "MyDrinks", Toast.LENGTH_SHORT).show();
                             break;
                     }
