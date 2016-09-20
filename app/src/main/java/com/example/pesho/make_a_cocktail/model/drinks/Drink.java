@@ -17,6 +17,7 @@ public abstract class Drink {
     private int idDrink;
     private String name;
     private int image;
+    private String imagePath;
     private String strCategory;
     private String strAlcoholic;
     private String strGlass;
@@ -120,5 +121,9 @@ public abstract class Drink {
 
     public void setBmp(Bitmap bmp) {
         this.bmp = bmp;
+    }
+
+    public void setImagePath(String path) {
+        this.imagePath = path;
     }
 }
