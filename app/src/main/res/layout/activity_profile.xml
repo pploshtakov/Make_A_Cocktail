@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/custom_blue"
+    tools:context="com.example.pesho.make_a_cocktail.ProfileActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/helloUserTV"
+        android:text="Hello "
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:hint="Enter new name"
+        android:id="@+id/newNameET"
+        android:layout_below="@id/helloUserTV"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:hint="Enter new email address"
+        android:id="@+id/newAddressET"
+        android:layout_below="@+id/newNameET"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDIT"
+        android:id="@+id/editNameButton"
+        android:layout_alignTop="@+id/newNameET"
+        android:layout_alignLeft="@+id/editAddressButton"
+        android:layout_alignStart="@+id/editAddressButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDIT"
+        android:id="@+id/editAddressButton"
+        android:layout_below="@+id/newNameET"
+        android:layout_alignLeft="@+id/editPasswordButton"
+        android:layout_alignStart="@+id/editPasswordButton" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="Enter old password"
+        android:id="@+id/oldPasswrodET"
+        android:layout_below="@+id/newAddressET"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/newPasswordET"
+        android:hint="New password"
+        android:layout_below="@+id/oldPasswrodET"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/newPassword2ET"
+        android:hint="New password again"
+        android:layout_below="@+id/newPasswordET"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDIT"
+        android:id="@+id/editPasswordButton"
+        android:layout_below="@+id/newPasswordET"
+        android:layout_toRightOf="@+id/newPasswordET"
+        android:layout_toEndOf="@+id/newPasswordET" />
+</RelativeLayout>

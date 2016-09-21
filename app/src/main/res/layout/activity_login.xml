@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/main_pic1"
+    android:background="@drawable/loading_pic"
     tools:context="com.example.pesho.make_a_cocktail.LoginActivity">
 
     <LinearLayout
@@ -22,6 +22,10 @@
             android:layout_height="wrap_content"
             android:textSize="26dp"
             android:hint="@string/user_name"
+            android:inputType="textPersonName"
+            android:textColorHint="@android:color/white"
+            android:lines="1"
+            android:textColor="@android:color/holo_red_light"
             android:gravity="center"
             android:id="@+id/loginNameText"
             />
@@ -32,7 +36,9 @@
             android:textSize="26dp"
             android:hint="@string/password"
             android:gravity="center"
+            android:textColor="@android:color/holo_red_light"
             android:id="@+id/loginPassText"
+            android:textColorHint="@android:color/white"
             android:layout_below="@+id/loginNameText"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -51,6 +57,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/login"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_red_light"
             android:id="@+id/LPLoginButton" />
 
         <Button
@@ -58,6 +66,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/register"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_red_light"
             android:id="@+id/LPRegisterButton" />
     </LinearLayout>
 
@@ -65,8 +75,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/loginRegButtons"
-
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
         android:text="@string/facebook_login"
         android:id="@+id/LPFacebookLoginButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Make A Cocktail"
+        android:textStyle="bold|italic"
+        android:textColor="#000000"
+        android:textSize="35sp"
+        android:id="@+id/titleTV"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

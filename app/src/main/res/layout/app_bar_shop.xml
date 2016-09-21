@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/yellowBackground"
-    tools:context="com.example.pesho.make_a_cocktail.TestShopActivity">
+    android:background="@drawable/loading_pic"
+    tools:context=".ShopActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,9 +22,10 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/holo_red_light"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-            <include
+                android:background="@color/custom_blue"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                />
+          <include
                 layout="@layout/my_toolbar"
                 android:id="@+id/myToolbar"
                 />

@@ -8,19 +8,36 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.pesho.make_a_cocktail.LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.example.pesho.make_a_cocktail.RegisterActivity" />
-        <activity android:name="com.example.pesho.make_a_cocktail.ShopActivity" />
-        <activity
-            android:name="com.example.pesho.make_a_cocktail.TestShopActivity"
-            android:label="@string/title_activity_test_shop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-    </application>
 
+        </activity>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ShopActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".DrinkInfoActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".AddNewDrinkActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".ProfileActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 </manifest>

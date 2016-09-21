@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <group android:checkableBehavior="single">
+        
         <item
             android:id="@+id/nav_drinks"
             android:icon="@drawable/coctail_nav_pic"
@@ -22,7 +23,12 @@
         <item
             android:id="@+id/nav_new_drink"
             android:icon="@drawable/nav_new_drink_pic"
-            android:title="New" />
+            android:title="Add New" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/nav_logout_pic"
+            android:title="Logout" />
     </group>
 
 

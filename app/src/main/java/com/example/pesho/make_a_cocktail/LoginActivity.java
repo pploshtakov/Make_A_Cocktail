@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pesho.make_a_cocktail.model.users.User;
 import com.example.pesho.make_a_cocktail.model.users.UsersManager;
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,7 +26,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         UsersManager.getInstance(LoginActivity.this);
+        String loggedUser = UsersManager.getLastLoggedUser();
+        if (!loggedUser.equals("No logged user!")) {
+            Intent login = new Intent(LoginActivity.this, ShopActivity.class);
+            login.putExtra("loggedUser", loggedUser);
+            startActivity(login);
+            finish();
+        }
         register = (Button) findViewById(R.id.LPRegisterButton);
         login = (Button) findViewById(R.id.LPLoginButton);
         regByFace = (Button) findViewById(R.id.LPFacebookLoginButton);
@@ -48,8 +56,9 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login = new Intent(LoginActivity.this, TestShopActivity.class);
+                Intent login = new Intent(LoginActivity.this, ShopActivity.class);
                 if (UsersManager.checkPass(userName.getText().toString(), pass.getText().toString())) {
+                    login.putExtra("loggedUser", userName.getText().toString());
                     startActivity(login);
                     finish();
                 } else {
